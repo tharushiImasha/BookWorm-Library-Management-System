@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="800.0" prefWidth="1121.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LoginController">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="1124.0" layoutX="-1.0">
+         <image>
+            <Image url="@../images/Login.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtUserName" layoutX="199.0" layoutY="405.0" prefHeight="33.0" prefWidth="308.0" promptText="User Name" style="-fx-border-color: #002B5B; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="162.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Username.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtpassword" layoutX="199.0" layoutY="477.0" prefHeight="33.0" prefWidth="308.0" promptText="Password" style="-fx-border-color: #002B5B; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="162.0" layoutY="478.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Password.png" />
+         </image>
+      </ImageView>
+      <JFXCheckBox fx:id="chkPw" checkedColor="#002b5b" layoutX="404.0" layoutY="518.0" opacity="0.6" prefHeight="13.0" prefWidth="92.0" text="Show Password">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXButton layoutX="161.0" layoutY="579.0" onAction="#btnLoginOnAction" prefHeight="39.0" prefWidth="347.0" style="-fx-background-color: #002B5B; -fx-background-radius: 10;" text="Login" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="264.0" layoutY="632.0" text="Not registered ? ">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="348.0" layoutY="632.0" onMouseClicked="#createAccOnAction" text="Create an account" textFill="#0014ff" underline="true">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

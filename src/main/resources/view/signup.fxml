@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="800.0" prefWidth="1121.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SignupController">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="1124.0" layoutX="-1.0">
+         <image>
+            <Image url="@../images/Signup.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtUserName" layoutX="199.0" layoutY="431.0" prefHeight="33.0" prefWidth="308.0" promptText="User Name" style="-fx-border-color: #002B5B; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="162.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Username.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtpassword" layoutX="199.0" layoutY="487.0" prefHeight="33.0" prefWidth="308.0" promptText="Password" style="-fx-border-color: #002B5B; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="162.0" layoutY="488.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Password.png" />
+         </image>
+      </ImageView>
+      <JFXCheckBox fx:id="chkPw" checkedColor="#002b5b" layoutX="404.0" layoutY="528.0" opacity="0.6" prefHeight="13.0" prefWidth="92.0" text="Show Password">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXButton layoutX="161.0" layoutY="579.0" onAction="#btnCreateAccOnAction" prefHeight="39.0" prefWidth="347.0" style="-fx-background-color: #002B5B; -fx-background-radius: 10;" text="Create Account" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="251.0" layoutY="630.0" text="Allready have an Account ?">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="391.0" layoutY="630.0" onMouseClicked="#loginOnAction" text="Login" textFill="#0014ff" underline="true">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtEmail" layoutX="199.0" layoutY="372.0" prefHeight="33.0" prefWidth="308.0" promptText="Email" style="-fx-border-color: #002B5B; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="162.0" layoutY="373.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Email.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtfullName" layoutX="199.0" layoutY="312.0" prefHeight="33.0" prefWidth="308.0" promptText="Full Name" style="-fx-border-color: #002B5B; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="162.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/FullName.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

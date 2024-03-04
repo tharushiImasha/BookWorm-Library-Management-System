@@ -1,43 +1,88 @@
 package lk.ijse.repository.custom.impl;
 
-import lk.ijse.dto.UserDto;
 import lk.ijse.repository.custom.UserRepository;
 import lk.ijse.entity.User;
-import lk.ijse.util.SessionFactoryConfig;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class UserRepositoryImpl implements UserRepository {
 
-    private final Session session;
+    private Session session;
+    private static UserRepositoryImpl userRepositoryImpl;
 
-    public UserRepositoryImpl(){
-        session = SessionFactoryConfig.getInstance().getSession();
+    public UserRepositoryImpl(){}
+
+    public static UserRepositoryImpl getInstance(){
+        return null == userRepositoryImpl ? userRepositoryImpl = new UserRepositoryImpl() : userRepositoryImpl;
+    }
+
+    @Override
+    public void setSession(Session session) {
+        this.session = session;
     }
 
     @Override
     public boolean save(User entity) {
-        Transaction transaction = session.beginTransaction();
-
         try {
             session.save(entity);
-
-            transaction.commit();
-            session.close();
-
             return true;
 
         }catch (Exception e) {
-            transaction.rollback();
-            session.close();
             e.printStackTrace();
-
             return false;
         }
 
+    }
+
+    @Override
+    public String getPw(String userName) {
+        try {
+
+            String sql = "SELECT password FROM User WHERE userName like: user_name";
+
+            Query query = session.createQuery(sql).setParameter("user_name", userName);
+
+            List list = query.list();
+
+            if (list.isEmpty()){
+                return null;
+            }else {
+                return (String) list.get(0);
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+
+        }
+    }
+
+    @Override
+    public String getName(String userName) {
+        try {
+
+            String sql = "SELECT fullName FROM User WHERE userName like: user_name";
+
+            Query query = session.createQuery(sql).setParameter("user_name", userName);
+
+            List list = query.list();
+
+            if (list.isEmpty()){
+                return null;
+            }else {
+
+                return (String) list.get(0);
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+
+        }
     }
 
     @Override
@@ -60,30 +105,4 @@ public class UserRepositoryImpl implements UserRepository {
         return List.of();
     }
 
-    @Override
-    public String getPw(String userName) {
-        try {
-
-            String sql = "SELECT password FROM User WHERE userName like: user_name";
-
-            Query query = session.createQuery(sql).setParameter("user_name", userName);
-
-            List list = query.list();
-
-            session.close();
-
-            if (list.size()==0){
-                return null;
-            }else {
-                System.out.println("pw - "+list.get(0));
-                return (String) list.get(0);
-            }
-
-        }catch (Exception e) {
-            session.close();
-            e.printStackTrace();
-
-            return null;
-        }
-    }
 }

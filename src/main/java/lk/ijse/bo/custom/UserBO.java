@@ -6,6 +6,8 @@ import lk.ijse.dto.UserDto;
 public interface UserBO extends SuperBO {
     String getPw (String userName);
 
+    String getName (String userName);
+
     boolean saveUser(UserDto userDto);
 
 }

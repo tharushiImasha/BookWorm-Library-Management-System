@@ -33,7 +33,7 @@ public class LoginController {
     UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.USER);
 
     @FXML
-    void btnLoginOnAction(ActionEvent event) {
+    void btnLoginOnAction(ActionEvent event) throws IOException {
         String userName = txtUserName.getText();
         String pw = txtpassword.getText();
 
@@ -42,9 +42,17 @@ public class LoginController {
         System.out.println(password);
 
         if (password.equals(pw)){
-            new Alert(Alert.AlertType.CONFIRMATION, "Login successfully").show();
+
+            Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/user_dashboard.fxml"));
+
+            Scene scene = new Scene(rootNode);
+            Stage stage = (Stage) this.rootNode.getScene().getWindow();
+
+            stage.setTitle("Signup Page");
+            stage.setScene(scene);
+            stage.centerOnScreen();
         }else {
-            new Alert(Alert.AlertType.CONFIRMATION, "Failed").show();
+            new Alert(Alert.AlertType.CONFIRMATION, "Username or Password invalid").show();
         }
     }
 
@@ -58,6 +66,12 @@ public class LoginController {
         stage.setTitle("Signup Page");
         stage.setScene(scene);
         stage.centerOnScreen();
+    }
+
+    public String getUserName(){
+        String userName = txtUserName.getText();
+        System.out.println(userName);
+        return userName;
     }
 
 }

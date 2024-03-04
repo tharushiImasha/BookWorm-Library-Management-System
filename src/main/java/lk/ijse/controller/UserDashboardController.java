@@ -5,8 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.UserBO;
 
 public class UserDashboardController {
+    @FXML
+    private Text lblName;
+
     @FXML
     private Rectangle childrenRect;
 
@@ -27,6 +33,18 @@ public class UserDashboardController {
 
     @FXML
     private Rectangle recentRect;
+
+    LoginController loginController = new LoginController();
+    UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.USER);
+
+    public void initialize(){
+        getName();
+    }
+
+    private void getName(){
+        String name = userBO.getName(loginController.getUserName());
+        lblName.setText(name);
+    }
 
     @FXML
     void ProfileOnAction(MouseEvent event) {

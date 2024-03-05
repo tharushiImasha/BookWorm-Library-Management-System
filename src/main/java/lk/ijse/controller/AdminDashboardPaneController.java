@@ -7,70 +7,77 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import lk.ijse.bo.BOFactory;
-import lk.ijse.bo.custom.UserBO;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+public class AdminDashboardPaneController {
 
-public class UserDashboardController {
+    @FXML
+    private ImageView booksOff;
+
+    @FXML
+    private ImageView booksOn;
+
+    @FXML
+    private ImageView branchesOff;
+
+    @FXML
+    private ImageView branchesOn;
+
+    @FXML
+    private AnchorPane childNode;
+
+    @FXML
+    private ImageView dashboardOff;
+
+    @FXML
+    private ImageView dashboardOn;
+
+    @FXML
+    private Label lblDateTime;
+
     @FXML
     private Text lblName;
-
-    @FXML
-    private Rectangle childrenRect;
-
-    @FXML
-    private Rectangle fantacyRect;
-
-    @FXML
-    private Rectangle fictionRect;
-
-    @FXML
-    private Rectangle horrorRect;
-
-    @FXML
-    private Rectangle popularRect;
 
     @FXML
     private Circle profile;
 
     @FXML
-    private Rectangle recentRect;
+    private Rectangle rectBooks;
 
     @FXML
-    private Label lblDateTime;
+    private Rectangle rectBranches;
 
-    UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.USER);
+    @FXML
+    private Rectangle rectDashboard;
+
+    @FXML
+    private Rectangle rectLogout;
+
+    @FXML
+    private Rectangle rectUsers;
+
+    @FXML
+    private AnchorPane rootNode;
+
+    @FXML
+    private ImageView usersOff;
+
+    @FXML
+    private ImageView usersOn;
 
     public void initialize(){
-        //lblName.setText(LoginController.name + " !");
-        getName();
+        lblName.setText(LoginController.name + " !");
         generateTime();
     }
-
-    public void getName(){
-       String fullName = LoginController.name;
-       lblName.setText(fullName);
-
-//       String name = fullName.substring(0, fullName.indexOf(' '));
-//       lblName.setText(name + " !");
-    }
-
-//    public void generateTime(){
-//        String month = new SimpleDateFormat("MMMM").format(new Date());
-//        String dayOfWeek = new SimpleDateFormat("EEEE").format(new Date());
-//        String currentDate = new SimpleDateFormat("dd, yyyy").format(new Date());
-//        String currentTime = new SimpleDateFormat("HH:mm").format(new Date());
-//
-//        lblDateTime.setText(month+" "+currentDate+" | "+dayOfWeek+", "+currentTime);
-//    }
 
     public void generateTime() {
         // Create a DateTimeFormatter for formatting the time
@@ -99,37 +106,27 @@ public class UserDashboardController {
     }
 
     @FXML
-    void childrenRectOnAction(MouseEvent event) {
+    void rectBooksOnAction(MouseEvent event) {
 
     }
 
     @FXML
-    void fantacyRectOnAction(MouseEvent event) {
+    void rectBranchesOnAction(MouseEvent event) {
 
     }
 
     @FXML
-    void fictionRectOnAction(MouseEvent event) {
+    void rectLogoutOnAction(MouseEvent event) {
 
     }
 
     @FXML
-    void genreOnAction(ActionEvent event) {
+    void rectUsersOnAction(MouseEvent event) {
 
     }
 
     @FXML
-    void horrorRectOnAction(MouseEvent event) {
-
-    }
-
-    @FXML
-    void popularRectOnAction(MouseEvent event) {
-
-    }
-
-    @FXML
-    void recentRectOnAction(MouseEvent event) {
+    void rectdashboardOnAction(MouseEvent event) {
 
     }
 
@@ -137,4 +134,5 @@ public class UserDashboardController {
     void searchOnAction(ActionEvent event) {
 
     }
+
 }

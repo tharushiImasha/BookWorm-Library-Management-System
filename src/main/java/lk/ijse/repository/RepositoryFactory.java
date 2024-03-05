@@ -1,5 +1,6 @@
 package lk.ijse.repository;
 
+import lk.ijse.repository.custom.impl.AdminRepositoryImpl;
 import lk.ijse.repository.custom.impl.UserRepositoryImpl;
 
 public class RepositoryFactory {
@@ -13,13 +14,15 @@ public class RepositoryFactory {
     }
 
     public enum DaoTypes{
-        USER
+        USER, ADMIN
     }
 
     public SuperRepository getDAO(DaoTypes daoTypes){
         switch (daoTypes){
             case USER:
                 return new UserRepositoryImpl();
+            case ADMIN:
+                return new AdminRepositoryImpl();
             default:
                 return null;
         }

@@ -30,6 +30,8 @@ public class LoginController {
     @FXML
     private TextField txtpassword;
 
+    public static String name;
+
     UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.USER);
 
     @FXML
@@ -38,6 +40,8 @@ public class LoginController {
         String pw = txtpassword.getText();
 
         String password = userBO.getPw(userName);
+
+        name = userBO.getName(userName);
 
         System.out.println(password);
 
@@ -66,12 +70,6 @@ public class LoginController {
         stage.setTitle("Signup Page");
         stage.setScene(scene);
         stage.centerOnScreen();
-    }
-
-    public String getUserName(){
-        String userName = txtUserName.getText();
-        System.out.println(userName);
-        return userName;
     }
 
 }

@@ -86,6 +86,31 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public String getrole(String userName) {
+        try {
+
+            String sql = "SELECT userRole FROM User WHERE userName like: user_name";
+
+            Query query = session.createQuery(sql).setParameter("user_name", userName);
+
+            List list = query.list();
+
+            if (list.isEmpty()){
+                return null;
+            }else {
+
+                return (String) list.get(0);
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+
+        }
+    }
+
+    @Override
     public boolean update(User entity) {
         return false;
     }

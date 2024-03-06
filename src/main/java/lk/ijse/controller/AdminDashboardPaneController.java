@@ -6,6 +6,9 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -13,8 +16,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -80,23 +85,16 @@ public class AdminDashboardPaneController {
     }
 
     public void generateTime() {
-        // Create a DateTimeFormatter for formatting the time
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy | EEEE, HH:mm");
 
-        // Create a Timeline to update the time every second
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1), event -> {
-                    // Get current time
                     LocalDateTime currentTime = LocalDateTime.now();
-                    // Format the time
                     String formattedTime = currentTime.format(formatter);
-                    // Update the UI on the JavaFX Application Thread
                     Platform.runLater(() -> lblDateTime.setText(formattedTime));
                 })
         );
-        // Set the cycle count to indefinite so the timeline keeps running
         timeline.setCycleCount(Animation.INDEFINITE);
-        // Start the timeline
         timeline.play();
     }
 
@@ -106,8 +104,9 @@ public class AdminDashboardPaneController {
     }
 
     @FXML
-    void rectBooksOnAction(MouseEvent event) {
-
+    void rectBooksOnAction(MouseEvent event) throws IOException {
+        childNode.getChildren().clear();
+        childNode.getChildren().add(FXMLLoader.load(childNode.getClass().getResource("/view/books.fxml")));
     }
 
     @FXML
@@ -116,13 +115,21 @@ public class AdminDashboardPaneController {
     }
 
     @FXML
-    void rectLogoutOnAction(MouseEvent event) {
+    void rectLogoutOnAction(MouseEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/login.fxml"));
 
+        Scene scene = new Scene(rootNode);
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+
+        stage.setTitle("Login Page");
+        stage.setScene(scene);
+        stage.centerOnScreen();
     }
 
     @FXML
-    void rectUsersOnAction(MouseEvent event) {
-
+    void rectUsersOnAction(MouseEvent event) throws IOException {
+        childNode.getChildren().clear();
+        childNode.getChildren().add(FXMLLoader.load(childNode.getClass().getResource("/view/users.fxml")));
     }
 
     @FXML

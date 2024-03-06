@@ -7,4 +7,6 @@ public interface UserRepository extends CrudRepository<User> {
     String getPw (String userName);
 
     String getName (String userName);
+
+    String getrole (String userName);
 }

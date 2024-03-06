@@ -57,13 +57,30 @@ public class UserBOImpl implements UserBO {
     }
 
     @Override
+    public String getRole(String userName) {
+        session = SessionFactoryConfig.getInstance().getSession();
+        try {
+            userRepository.setSession(session);
+            String role = userRepository.getrole(userName);
+
+            session.close();
+            return role;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public boolean saveUser(UserDto userDto) {
         session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
         try {
             userRepository.setSession(session);
-            boolean save = userRepository.save(new User(userDto.getUserName(), userDto.getEmail(), userDto.getFullName(), userDto.getPassword()));
+            boolean save = userRepository.save(new User(userDto.getUserName(), userDto.getEmail(), userDto.getFullName(), userDto.getPassword(), userDto.getUserRole()));
 
             transaction.commit();
             session.close();

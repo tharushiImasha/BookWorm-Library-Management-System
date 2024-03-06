@@ -43,18 +43,30 @@ public class LoginController {
 
         name = userBO.getName(userName);
 
-        System.out.println(password);
+        String role = userBO.getRole(userName);
 
         if (password.equals(pw)){
 
-            Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/user_dashboard.fxml"));
+            if (role.equals("Admin")){
+                Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/admin_dashboard_pane.fxml"));
 
-            Scene scene = new Scene(rootNode);
-            Stage stage = (Stage) this.rootNode.getScene().getWindow();
+                Scene scene = new Scene(rootNode);
+                Stage stage = (Stage) this.rootNode.getScene().getWindow();
 
-            stage.setTitle("Signup Page");
-            stage.setScene(scene);
-            stage.centerOnScreen();
+                stage.setTitle("Admin Dashboard");
+                stage.setScene(scene);
+                stage.centerOnScreen();
+            }else {
+                Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/user_dashboard.fxml"));
+
+                Scene scene = new Scene(rootNode);
+                Stage stage = (Stage) this.rootNode.getScene().getWindow();
+
+                stage.setTitle("User Dashboard");
+                stage.setScene(scene);
+                stage.centerOnScreen();
+            }
+
         }else {
             new Alert(Alert.AlertType.CONFIRMATION, "Username or Password invalid").show();
         }

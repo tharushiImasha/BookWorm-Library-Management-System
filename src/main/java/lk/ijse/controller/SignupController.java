@@ -44,8 +44,9 @@ public class SignupController {
         String name = txtfullName.getText();
         String userName = txtUserName.getText();
         String pw = txtpassword.getText();
+        String role = "Reader";
 
-        var dto = new UserDto(userName, email, name, pw);
+        var dto = new UserDto(userName, email, name, pw, role);
 
         try {
 

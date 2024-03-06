@@ -8,6 +8,8 @@ public interface UserBO extends SuperBO {
 
     String getName (String userName);
 
+    String getRole (String userName);
+
     boolean saveUser(UserDto userDto);
 
 }

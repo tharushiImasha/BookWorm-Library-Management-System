@@ -1,6 +1,7 @@
-package lk.ijse.dto;
+package lk.ijse.dto.tm;
 
 
+import javafx.scene.control.Button;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class AdminDto implements Serializable {
+public class UserTm implements Serializable {
 
     private String userName;
 
@@ -20,5 +21,9 @@ public class AdminDto implements Serializable {
     private String fullName;
 
     private String password;
+
+    private String userRole;
+
+    private Button btn;
 
 }

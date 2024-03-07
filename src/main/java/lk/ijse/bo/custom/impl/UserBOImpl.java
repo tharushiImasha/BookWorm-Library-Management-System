@@ -9,6 +9,9 @@ import lk.ijse.util.SessionFactoryConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserBOImpl implements UserBO {
 
     private static UserBO userBO;
@@ -92,5 +95,88 @@ public class UserBOImpl implements UserBO {
             return false;
         }
 
+    }
+
+    @Override
+    public boolean updateUser(UserDto userDto) {
+        session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            userRepository.setSession(session);
+            boolean update = userRepository.update(new User(userDto.getUserName(), userDto.getEmail(), userDto.getFullName(), userDto.getPassword(), userDto.getUserRole()));
+
+            transaction.commit();
+            session.close();
+            return update;
+
+        } catch (Exception e) {
+            transaction.rollback();
+            session.close();
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteUser(UserDto userDto) {
+        session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            userRepository.setSession(session);
+            boolean delete = userRepository.delete(new User(userDto.getUserName(), userDto.getEmail(), userDto.getFullName(), userDto.getPassword(), userDto.getUserRole()));
+
+            transaction.commit();
+            session.close();
+            return delete;
+
+        } catch (Exception e) {
+            transaction.rollback();
+            session.close();
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public User searchUser(String id) {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            userRepository.setSession(session);
+            User search = userRepository.search(id);
+
+            session.close();
+            return search;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public List<UserDto> getAllUser() {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            userRepository.setSession(session);
+            List<User> all = userRepository.getAll();
+            List<UserDto> userDtoList = new ArrayList<>();
+
+            for (User user : all){
+                userDtoList.add(user.toDto());
+            }
+
+            session.close();
+            return userDtoList;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
     }
 }

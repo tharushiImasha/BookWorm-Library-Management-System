@@ -24,19 +24,6 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public boolean save(User entity) {
-        try {
-            session.save(entity);
-            return true;
-
-        }catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-
-    }
-
-    @Override
     public String getPw(String userName) {
         try {
 
@@ -111,23 +98,64 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public boolean save(User entity) {
+        try {
+            session.save(entity);
+            return true;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    @Override
     public boolean update(User entity) {
-        return false;
+        try {
+            session.update(entity);
+            return true;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public boolean delete(User entity) {
-        return false;
+        try {
+            session.delete(entity);
+            return true;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public User search(String id) {
-        return null;
+        try {
+            User user = session.get(User.class, id);
+            return user;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     @Override
     public List<User> getAll() {
-        return List.of();
+        String sql = "SELECT u FROM User AS u";
+        Query query = session.createQuery(sql);
+
+        List list = query.list();
+
+        session.close();
+
+        return list;
     }
 
 }

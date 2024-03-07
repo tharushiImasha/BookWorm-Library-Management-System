@@ -110,8 +110,9 @@ public class AdminDashboardPaneController {
     }
 
     @FXML
-    void rectBranchesOnAction(MouseEvent event) {
-
+    void rectBranchesOnAction(MouseEvent event) throws IOException {
+        childNode.getChildren().clear();
+        childNode.getChildren().add(FXMLLoader.load(childNode.getClass().getResource("/view/branch.fxml")));
     }
 
     @FXML

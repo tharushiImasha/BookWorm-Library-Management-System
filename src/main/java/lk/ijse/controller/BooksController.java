@@ -2,16 +2,21 @@ package lk.ijse.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import lk.ijse.dto.BookDto;
+import lk.ijse.dto.UserDto;
+import lk.ijse.entity.Branch;
+
+import static lk.ijse.bo.custom.impl.UserBOImpl.userBO;
 
 public class BooksController {
 
     @FXML
     private ComboBox<?> cmbBookType;
+
+    @FXML
+    private ComboBox<String> cmbBranch;
 
     @FXML
     private ComboBox<?> cmbGenre;
@@ -41,6 +46,9 @@ public class BooksController {
     private TextField txtDesc;
 
     @FXML
+    private TextField txtCount;
+
+    @FXML
     private TextField txtPhoto;
 
     @FXML
@@ -48,16 +56,19 @@ public class BooksController {
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnDeleteOnAction(ActionEvent event) {
-
+        txtAuthor.clear();
+        txtCount.clear();
+        txtTitle.clear();
+        txtDesc.clear();
     }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
+        String author = txtAuthor.getText();
+        String title = txtTitle.getText();
+        String desc = txtDesc.getText();
+        int count = Integer.parseInt(txtCount.getText());
+        String branch = cmbBranch.getValue();
 
     }
 

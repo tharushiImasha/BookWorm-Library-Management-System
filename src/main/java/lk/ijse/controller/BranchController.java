@@ -58,7 +58,7 @@ public class BranchController {
     private void loadUserName() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<UserDto> list = userBO.getAllUser();
+            List<UserDto> list = userBO.getUsersAdmin();
 
             for (UserDto dto : list) {
                 obList.add(dto.getUserName());

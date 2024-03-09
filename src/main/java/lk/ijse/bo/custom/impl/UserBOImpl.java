@@ -179,4 +179,27 @@ public class UserBOImpl implements UserBO {
             throw e;
         }
     }
+
+    @Override
+    public List<UserDto> getUsersAdmin() {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            userRepository.setSession(session);
+            List<User> all = userRepository.getUsersAdmin();
+            List<UserDto> userDtoList = new ArrayList<>();
+
+            for (User user : all){
+                userDtoList.add(user.toDto());
+            }
+
+            session.close();
+            return userDtoList;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
 }

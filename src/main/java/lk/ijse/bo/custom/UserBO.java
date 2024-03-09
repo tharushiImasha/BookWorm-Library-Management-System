@@ -23,4 +23,6 @@ public interface UserBO extends SuperBO {
 
     List<UserDto> getAllUser();
 
+    List<UserDto> getUsersAdmin();
+
 }

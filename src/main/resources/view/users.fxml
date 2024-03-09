@@ -14,35 +14,35 @@
 
 <AnchorPane prefHeight="692.0" prefWidth="1088.0" style="-fx-background-color: transparent; -fx-background-radius: 8;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UsersController">
    <children>
-      <Label layoutX="46.0" layoutY="34.0" text="Name :" textFill="WHITE">
+      <Label layoutX="48.0" layoutY="88.0" text="Name :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtName" layoutX="138.0" layoutY="30.0" prefHeight="29.0" prefWidth="293.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;">
+      <TextField fx:id="txtName" layoutX="140.0" layoutY="84.0" prefHeight="29.0" prefWidth="293.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></TextField>
-      <Label layoutX="46.0" layoutY="100.0" text="Email :" textFill="WHITE">
+      <Label layoutX="48.0" layoutY="154.0" text="Email :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtEmail" layoutX="139.0" layoutY="96.0" prefHeight="29.0" prefWidth="293.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;">
+      <TextField fx:id="txtEmail" layoutX="141.0" layoutY="150.0" prefHeight="29.0" prefWidth="293.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></TextField>
-      <JFXButton layoutX="229.0" layoutY="246.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="save">
+      <JFXButton layoutX="229.0" layoutY="306.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="save">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="463.0" layoutY="246.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Update">
+      <JFXButton layoutX="463.0" layoutY="306.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Update">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="697.0" layoutY="246.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Clear">
+      <JFXButton layoutX="697.0" layoutY="306.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Clear">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -56,7 +56,7 @@
             <TableColumn fx:id="colAction" prefWidth="152.0" text="Action" />
         </columns>
       </TableView>
-      <JFXRadioButton fx:id="radAdmin" layoutX="47.0" layoutY="177.0" text="Admin" textFill="WHITE">
+      <JFXRadioButton fx:id="radAdmin" layoutX="47.0" layoutY="226.0" text="Admin" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -67,7 +67,7 @@
             <Color red="0.4722222089767456" green="0.727314829826355" blue="1.0" />
          </selectedColor>
       </JFXRadioButton>
-      <JFXRadioButton fx:id="radReader" layoutX="185.0" layoutY="177.0" text="Reader" textFill="WHITE">
+      <JFXRadioButton fx:id="radReader" layoutX="185.0" layoutY="226.0" text="Reader" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -78,28 +78,33 @@
             <Color red="0.4722222089767456" green="0.727314829826355" blue="1.0" />
          </selectedColor>
       </JFXRadioButton>
-      <Label layoutX="524.0" layoutY="34.0" text="User name :" textFill="WHITE">
+      <Label layoutX="526.0" layoutY="88.0" text="User name :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtUserName" layoutX="669.0" layoutY="30.0" prefHeight="29.0" prefWidth="293.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;">
+      <TextField fx:id="txtUserName" layoutX="671.0" layoutY="84.0" prefHeight="29.0" prefWidth="293.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></TextField>
-      <Label layoutX="524.0" layoutY="100.0" text="Password :" textFill="WHITE">
+      <Label layoutX="526.0" layoutY="154.0" text="Password :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtPw" layoutX="669.0" layoutY="96.0" prefHeight="29.0" prefWidth="293.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;">
+      <TextField fx:id="txtPw" layoutX="671.0" layoutY="150.0" prefHeight="29.0" prefWidth="293.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></TextField>
-      <ImageView fitHeight="211.0" fitWidth="201.0" layoutX="879.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="211.0" fitWidth="201.0" layoutX="868.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/usersIllustration.png" />
          </image>
       </ImageView>
+      <Label layoutX="48.0" layoutY="17.0" text="Users" textFill="#76afef">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

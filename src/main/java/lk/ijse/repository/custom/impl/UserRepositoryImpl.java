@@ -98,6 +98,20 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public List<User> getUsersAdmin() {
+        String role = "Admin";
+
+        String sql = "SELECT u FROM User AS u WHERE userRole = :role";
+        Query query = session.createQuery(sql).setParameter("role", role);
+
+        List list = query.list();
+
+        session.close();
+
+        return list;
+    }
+
+    @Override
     public boolean save(User entity) {
         try {
             session.save(entity);

@@ -1,5 +1,7 @@
 package lk.ijse.util;
 
+import lk.ijse.entity.Book;
+import lk.ijse.entity.BooksDetail;
 import lk.ijse.entity.Branch;
 import lk.ijse.entity.User;
 import org.hibernate.HibernateException;
@@ -21,6 +23,8 @@ public class SessionFactoryConfig {
                 .mergeProperties(Utility.getProperties())
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Branch.class)
+                .addAnnotatedClass(Book.class)
+                .addAnnotatedClass(BooksDetail.class)
                 .buildSessionFactory();
     }
 

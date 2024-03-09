@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,6 +27,9 @@ public class Branch {
     @ManyToOne
     @JoinColumn(name = "user_name")
     private User user;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "branch")
+    private List<BooksDetail> booksDetails = new ArrayList<>();
 
     public BranchDto toDto(){
         BranchDto branchDto = new BranchDto();

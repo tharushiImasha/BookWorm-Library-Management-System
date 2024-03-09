@@ -13,59 +13,54 @@
 
 <AnchorPane prefHeight="692.0" prefWidth="1088.0" style="-fx-background-color: transparent; -fx-background-radius: 8;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BooksController">
    <children>
-      <Label layoutX="46.0" layoutY="34.0" text="Title :" textFill="WHITE">
+      <Label layoutX="46.0" layoutY="91.0" text="Title :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtTitle" layoutX="126.0" layoutY="30.0" prefHeight="29.0" prefWidth="305.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;" />
-      <Label layoutX="46.0" layoutY="100.0" text="Author :" textFill="WHITE">
+      <TextField fx:id="txtTitle" layoutX="126.0" layoutY="87.0" prefHeight="29.0" prefWidth="305.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;" />
+      <Label layoutX="46.0" layoutY="149.0" text="Author :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtAuthor" layoutX="151.0" layoutY="96.0" prefHeight="29.0" prefWidth="280.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;" />
-      <Label layoutX="46.0" layoutY="166.0" text="Description :" textFill="WHITE">
+      <TextField fx:id="txtAuthor" layoutX="151.0" layoutY="145.0" prefHeight="29.0" prefWidth="280.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;" />
+      <Label layoutX="46.0" layoutY="208.0" text="Description :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtDesc" layoutX="187.0" layoutY="162.0" prefHeight="72.0" prefWidth="246.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;" />
-      <Label layoutX="486.0" layoutY="34.0" text="Photo :" textFill="WHITE">
+      <TextField fx:id="txtDesc" layoutX="187.0" layoutY="204.0" prefHeight="72.0" prefWidth="246.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;" />
+      <Label layoutX="486.0" layoutY="90.0" text="Photo :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txtPhoto" layoutX="574.0" layoutY="30.0" prefHeight="203.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;" />
-      <ImageView fx:id="imgBook" fitHeight="174.0" fitWidth="144.0" layoutX="586.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="787.0" layoutY="35.0" text="Genre :" textFill="WHITE">
+      <TextField fx:id="txtPhoto" layoutX="574.0" layoutY="86.0" prefHeight="203.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;" />
+      <ImageView fx:id="imgBook" fitHeight="174.0" fitWidth="144.0" layoutX="586.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="786.0" layoutY="147.0" text="Genre :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbGenre" layoutX="876.0" layoutY="34.0" prefHeight="24.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF;" />
-      <JFXButton layoutX="202.0" layoutY="284.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="save">
+      <ComboBox fx:id="cmbGenre" layoutX="875.0" layoutY="146.0" prefHeight="24.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF;" />
+      <JFXButton layoutX="267.0" layoutY="331.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="save">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="601.0" layoutY="284.0" onAction="#btnDeleteOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Delete">
+      <JFXButton layoutX="486.0" layoutY="331.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Update">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="401.0" layoutY="284.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Update">
+      <JFXButton layoutX="698.0" layoutY="331.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Clear">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="801.0" layoutY="284.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Clear">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </JFXButton>
-      <ComboBox fx:id="cmbBookType" layoutX="44.0" layoutY="358.0" prefWidth="150.0" promptText="Books Type" style="-fx-background-color: #CFE6FF;" />
-      <TableView fx:id="tblAllBooks" layoutX="44.0" layoutY="420.0" prefHeight="259.0" prefWidth="999.0">
+      <ComboBox fx:id="cmbBookType" layoutX="44.0" layoutY="383.0" prefWidth="150.0" promptText="Books Type" style="-fx-background-color: #CFE6FF;" />
+      <TableView fx:id="tblAllBooks" layoutX="44.0" layoutY="435.0" prefHeight="244.0" prefWidth="999.0">
         <columns>
           <TableColumn fx:id="colTitle" prefWidth="191.0" text="Title" />
           <TableColumn fx:id="colAuthor" prefWidth="200.0" text="Author" />
@@ -73,10 +68,27 @@
             <TableColumn fx:id="colDesc" prefWidth="421.0" text="Description" />
         </columns>
       </TableView>
-      <ImageView fitHeight="203.0" fitWidth="202.0" layoutX="841.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="186.0" fitWidth="195.0" layoutX="861.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/booksIllustration.png" />
          </image>
       </ImageView>
+      <Label layoutX="46.0" layoutY="16.0" text="Books" textFill="#76afef">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="786.0" layoutY="206.0" text="Branch :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbBranch" layoutX="875.0" layoutY="205.0" prefHeight="24.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF;" />
+      <Label layoutX="786.0" layoutY="90.0" text="Count :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCount" layoutX="870.0" layoutY="86.0" prefHeight="29.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;" />
    </children>
 </AnchorPane>

@@ -15,7 +15,6 @@ import lk.ijse.dto.UserDto;
 import lk.ijse.dto.tm.BranchTm;
 import lk.ijse.entity.User;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,7 +49,7 @@ public class BranchController {
 
     public void initialize() {
         setCellValueFactory();
-        loadAllCustomers();
+        loadAllBranches();
         setListener();
         loadUserName();
     }
@@ -76,9 +75,11 @@ public class BranchController {
         colLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
+
+        System.out.println(new PropertyValueFactory<>("userName"));
     }
 
-    private void loadAllCustomers() {
+    private void loadAllBranches() {
 
         try {
             List<BranchDto> dtoList = branchBO.getAllBranch();
@@ -107,15 +108,20 @@ public class BranchController {
 
                 });
 
-                var tm = new BranchTm(dto.getId(), dto.getLocation(), dto.getUserName(), btn);
+                var tm = new BranchTm(dto.getId(), dto.getLocation(), dto.getUserName(),  btn);
+
+                System.out.println(dto.getUserName());
 
                 obList.add(tm);
+
+                System.out.println(tm);
 
             }
 
             tblBranches.setItems(obList);
 
         } catch (Exception e) {
+            System.out.println(e);
             throw new RuntimeException(e);
         }
     }
@@ -148,6 +154,7 @@ public class BranchController {
                             newValue.getId(),
                             newValue.getLocation(),
                             newValue.getUserName()
+                            //newValue.getUser()
                     );
                     setFields(dto);
                 });
@@ -171,6 +178,8 @@ public class BranchController {
         String branchId = txtId.getText();
         String location = txtLocation.getText();
         String userName = cmbUserName.getValue();
+
+        User user = userBO.searchUser(userName);
 
         var dto = new BranchDto(branchId, location, userName);
 

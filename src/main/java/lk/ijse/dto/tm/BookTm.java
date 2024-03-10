@@ -1,5 +1,6 @@
 package lk.ijse.dto.tm;
 
+import javafx.scene.control.Button;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,11 +10,15 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class BookTm {
-    private String id;
+    private int id;
 
     private String title;
 
     private String author;
 
     private String desc;
+
+    private String genre;
+
+    private Button btn;
 }

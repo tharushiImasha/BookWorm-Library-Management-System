@@ -2,7 +2,6 @@ package lk.ijse.entity;
 
 import jakarta.persistence.*;
 import lk.ijse.dto.BookDto;
-import lk.ijse.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,8 @@ public class Book {
 
     @Id
     @Column(name = "book_id")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @Column
     private String title;
@@ -31,8 +31,11 @@ public class Book {
     @Column(name = "description")
     private String desc;
 
+    @Column
+    private String genre;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "book")
-    private List<BooksDetail> booksDetails = new ArrayList<>();
+    private List<BorrowedDetails> borrowedDetails = new ArrayList<>();
 
     public BookDto toDto(){
         BookDto bookDto = new BookDto();
@@ -40,11 +43,10 @@ public class Book {
         bookDto.setDesc(this.desc);
         bookDto.setTitle(this.title);
         bookDto.setAuthor(this.author);
-        bookDto.setBooksDetails(this.booksDetails);
+        bookDto.setGenre(this.genre);
+        //bookDto.setBooksDetails(this.booksDetails);
 
         return bookDto;
     }
-
-
     //private byte[] image;
 }

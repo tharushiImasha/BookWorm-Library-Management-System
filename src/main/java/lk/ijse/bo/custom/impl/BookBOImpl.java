@@ -32,7 +32,7 @@ public class BookBOImpl implements BookBO {
 
         try {
             bookRepository.setSession(session);
-            boolean save = bookRepository.save(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getBooksDetails()));
+            boolean save = bookRepository.save(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(),bookDto.getGenre(), null));
 
             transaction.commit();
             session.close();
@@ -52,7 +52,7 @@ public class BookBOImpl implements BookBO {
 
         try {
             bookRepository.setSession(session);
-            boolean save = bookRepository.update(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getBooksDetails()));
+            boolean save = bookRepository.update(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getGenre(), null));
 
             transaction.commit();
             session.close();
@@ -72,7 +72,7 @@ public class BookBOImpl implements BookBO {
 
         try {
             bookRepository.setSession(session);
-            boolean save = bookRepository.delete(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getBooksDetails()));
+            boolean save = bookRepository.delete(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getGenre(), null));
 
             transaction.commit();
             session.close();

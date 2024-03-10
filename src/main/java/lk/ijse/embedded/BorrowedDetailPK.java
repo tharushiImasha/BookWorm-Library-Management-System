@@ -6,7 +6,7 @@ import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class BooksDetailPK implements Serializable {
+public class BorrowedDetailPK implements Serializable {
 
     @Column(name = "book_id")
     private String id;

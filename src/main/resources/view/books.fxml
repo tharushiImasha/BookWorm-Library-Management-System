@@ -38,12 +38,12 @@
       </Label>
       <TextField fx:id="txtPhoto" layoutX="574.0" layoutY="86.0" prefHeight="203.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;" />
       <ImageView fx:id="imgBook" fitHeight="174.0" fitWidth="144.0" layoutX="586.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="786.0" layoutY="147.0" text="Genre :" textFill="WHITE">
+      <Label layoutX="786.0" layoutY="88.0" text="Genre :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbGenre" layoutX="875.0" layoutY="146.0" prefHeight="24.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF;" />
+      <ComboBox fx:id="cmbGenre" layoutX="875.0" layoutY="87.0" prefHeight="24.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF;" />
       <JFXButton layoutX="267.0" layoutY="331.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="save">
          <font>
             <Font name="System Bold" size="16.0" />
@@ -62,13 +62,15 @@
       <ComboBox fx:id="cmbBookType" layoutX="44.0" layoutY="383.0" prefWidth="150.0" promptText="Books Type" style="-fx-background-color: #CFE6FF;" />
       <TableView fx:id="tblAllBooks" layoutX="44.0" layoutY="435.0" prefHeight="244.0" prefWidth="999.0">
         <columns>
+            <TableColumn fx:id="colBookId" prefWidth="95.0" text="Book ID" />
           <TableColumn fx:id="colTitle" prefWidth="191.0" text="Title" />
-          <TableColumn fx:id="colAuthor" prefWidth="200.0" text="Author" />
-            <TableColumn fx:id="colGenre" prefWidth="186.0" text="Genre" />
-            <TableColumn fx:id="colDesc" prefWidth="421.0" text="Description" />
+          <TableColumn fx:id="colAuthor" prefWidth="194.0" text="Author" />
+            <TableColumn fx:id="colGenre" minWidth="0.0" prefWidth="179.0" text="Genre" />
+            <TableColumn fx:id="colDesc" prefWidth="232.0" text="Description" />
+            <TableColumn fx:id="colAction" minWidth="0.0" prefWidth="107.0" text="Action" />
         </columns>
       </TableView>
-      <ImageView fitHeight="186.0" fitWidth="195.0" layoutX="861.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="244.0" fitWidth="233.0" layoutX="838.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/booksIllustration.png" />
          </image>
@@ -78,17 +80,11 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="786.0" layoutY="206.0" text="Branch :" textFill="WHITE">
+      <Label layoutX="786.0" layoutY="147.0" text="Branch :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbBranch" layoutX="875.0" layoutY="205.0" prefHeight="24.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF;" />
-      <Label layoutX="786.0" layoutY="90.0" text="Count :" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtCount" layoutX="870.0" layoutY="86.0" prefHeight="29.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;" />
+      <ComboBox fx:id="cmbBranch" layoutX="875.0" layoutY="146.0" prefHeight="24.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF;" />
    </children>
 </AnchorPane>

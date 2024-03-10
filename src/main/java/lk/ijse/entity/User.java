@@ -36,6 +36,9 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Branch> branches = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    private List<BorrowedDetails> borrowedDetails = new ArrayList<>();
+
     public UserDto toDto(){
         UserDto userDto = new UserDto();
         userDto.setUserName(this.userName);

@@ -7,14 +7,20 @@ import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BookBO;
+import lk.ijse.bo.custom.BranchBO;
 import lk.ijse.dto.BookDto;
+import lk.ijse.dto.BranchDto;
 import lk.ijse.dto.UserDto;
 import lk.ijse.dto.tm.BookTm;
 import lk.ijse.entity.Book;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +63,9 @@ public class BooksController {
     private TextField txtAuthor;
 
     @FXML
+    private TextField txtId;
+
+    @FXML
     private TextField txtDesc;
 
     @FXML
@@ -69,12 +78,14 @@ public class BooksController {
     private TextField txtTitle;
 
     BookBO bookBO = (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.BOOK);
+    BranchBO branchBO = (BranchBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.BRANCH);
 
     public void initialize() {
         setCellValueFactory();
         loadAllBooks();
         setListener();
         loadGenre();
+        loadBranch();
     }
 
     private void loadGenre() {
@@ -82,6 +93,22 @@ public class BooksController {
         cmbGenre.getItems().add("Fantasy");
         cmbGenre.getItems().add("Children's");
         cmbGenre.getItems().add("Fiction");
+    }
+
+    private void loadBranch() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+        try {
+            List<BranchDto> list = branchBO.getAllBranch();
+
+            for (BranchDto dto : list) {
+                obList.add(dto.getId());
+            }
+
+            cmbBranch.setItems(obList);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
@@ -121,7 +148,10 @@ public class BooksController {
 
                 });
 
-                var tm = new BookTm(dto.getId(), dto.getTitle(), dto.getAuthor(),dto.getDesc(), dto.getGenre(), btn);
+                var tm = new BookTm(dto.getId(), dto.getTitle(), dto.getAuthor(),dto.getDesc(), dto.getGenre(), dto.getBranchId(), btn);
+
+                System.out.println(dto.getId());
+                System.out.println(dto.getGenre());
 
                 obList.add(tm);
 
@@ -142,13 +172,15 @@ public class BooksController {
                             newValue.getTitle(),
                             newValue.getAuthor(),
                             newValue.getDesc(),
-                            newValue.getGenre()
+                            newValue.getGenre(),
+                            newValue.getBranchId()
                     );
                     setFields(dto);
                 });
     }
 
     private void setFields(BookDto dto) {
+        txtId.setText(dto.getId());
         txtDesc.setText(dto.getDesc());
         txtTitle.setText(dto.getTitle());
         txtAuthor.setText(dto.getAuthor());
@@ -160,10 +192,12 @@ public class BooksController {
         String author = txtAuthor.getText();
         String desc = txtDesc.getText();
         String genre = cmbGenre.getValue();
+        String bookId = txtId.getId();
+        String branchId = cmbBranch.getValue();
 
-        BookDto bookDto = new BookDto();
+        //BookDto bookDto = new BookDto();
 
-        var dto = new BookDto(bookDto.getId(), title, author, desc, genre);
+        var dto = new BookDto(bookId, title, author, desc, genre, branchId);
 
         try {
 
@@ -193,11 +227,11 @@ public class BooksController {
         String author = txtAuthor.getText();
         String title = txtTitle.getText();
         String desc = txtDesc.getText();
-        String genre = cmbBranch.getValue();
+        String genre = cmbGenre.getValue();
+        String bookId = txtId.getText();
+        String branchId = cmbBranch.getValue();
 
-        BookDto bookDto = new BookDto();
-
-        var dto = new BookDto(bookDto.getId(), title, author, desc, genre);
+        var dto = new BookDto(bookId, title, author, desc, genre, branchId);
 
         try {
 
@@ -221,10 +255,12 @@ public class BooksController {
         String title = txtTitle.getText();
         String desc = txtDesc.getText();
         String genre = cmbBranch.getValue();
+        String bookId = txtId.getId();
+        String branchId = cmbBranch.getValue();
 
-        Book book = new Book();
+        //Book book = new Book();
 
-        var dto = new BookDto(book.getId(), title, author, desc, genre);
+        var dto = new BookDto(bookId, title, author, desc, genre, branchId);
 
         try {
 
@@ -239,6 +275,25 @@ public class BooksController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    void btnSelectedOnAction(ActionEvent event) {
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Select Image File");
+//        // Set filter to only allow image files
+//        fileChooser.getExtensionFilters().addAll(
+//                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+//        );
+//        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+//
+//        Image image = new Image(new FileInputStream())
+//
+//        if (selectedFile != null) {
+//            // Load the selected image into the ImageView
+//            Image selectedImage = new Image(selectedFile.toURI().toString());
+//            imageView.setImage(selectedImage);
+//        }
     }
 
 }

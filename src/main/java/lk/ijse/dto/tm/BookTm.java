@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class BookTm {
-    private int id;
+    private String id;
 
     private String title;
 
@@ -19,6 +19,8 @@ public class BookTm {
     private String desc;
 
     private String genre;
+
+    private String branchId;
 
     private Button btn;
 }

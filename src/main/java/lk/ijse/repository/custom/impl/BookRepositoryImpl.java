@@ -1,6 +1,7 @@
 package lk.ijse.repository.custom.impl;
 
 import lk.ijse.entity.Book;
+import lk.ijse.entity.Branch;
 import lk.ijse.repository.custom.BookRepository;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -83,4 +84,74 @@ public class BookRepositoryImpl implements BookRepository {
         return list;
     }
 
+    @Override
+    public List<Book> getBookBranch(Branch branch) {
+
+//        String sql = "SELECT b FROM Book AS b WHERE branch = :branch";
+//        Query query = session.createQuery(sql).setParameter("branch", branch);
+//
+//        List list = query.list();
+//
+//        session.close();
+//
+//        return list;
+
+        return null;
+    }
+
+    @Override
+    public List<Book> getFictions() {
+        String type = "Fiction";
+
+        String sql = "SELECT b FROM Book AS b WHERE genre = :type";
+        Query query = session.createQuery(sql).setParameter("type", type);
+
+        List list = query.list();
+
+        session.close();
+
+        return list;
+    }
+
+    @Override
+    public List<Book> getFantasy() {
+        String type = "Fantasy";
+
+        String sql = "SELECT b FROM Book AS b WHERE genre = :type";
+        Query query = session.createQuery(sql).setParameter("type", type);
+
+        List list = query.list();
+
+        session.close();
+
+        return list;
+    }
+
+    @Override
+    public List<Book> getChildrens() {
+        String type = "Children's";
+
+        String sql = "SELECT b FROM Book AS b WHERE genre = :type";
+        Query query = session.createQuery(sql).setParameter("type", type);
+
+        List list = query.list();
+
+        session.close();
+
+        return list;
+    }
+
+    @Override
+    public List<Book> getHorror() {
+        String type = "Horror";
+
+        String sql = "SELECT b FROM Book AS b WHERE genre = :type";
+        Query query = session.createQuery(sql).setParameter("type", type);
+
+        List list = query.list();
+
+        session.close();
+
+        return list;
+    }
 }

@@ -86,5 +86,11 @@
          </font>
       </Label>
       <ComboBox fx:id="cmbBranch" layoutX="875.0" layoutY="146.0" prefHeight="24.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF;" />
+      <TextField fx:id="txtId" layoutX="187.0" layoutY="39.0" prefHeight="29.0" prefWidth="105.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;" />
+      <JFXButton layoutX="748.0" layoutY="260.0" onAction="#btnSelectedOnAction" prefHeight="24.0" prefWidth="92.0" style="-fx-background-color: #76AFEF;" text="Selected">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

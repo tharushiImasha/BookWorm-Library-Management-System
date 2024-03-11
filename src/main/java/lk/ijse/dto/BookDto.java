@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class BookDto {
-    private int id;
+    private String id;
 
     private String title;
 
@@ -18,6 +18,8 @@ public class BookDto {
     private String desc;
 
     private String genre;
+
+    private String branchId;
 
 
     //private List<BooksDetail> booksDetails;

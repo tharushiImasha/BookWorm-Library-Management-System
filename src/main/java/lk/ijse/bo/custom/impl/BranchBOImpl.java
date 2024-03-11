@@ -2,9 +2,11 @@ package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.BranchBO;
 import lk.ijse.dto.BranchDto;
+import lk.ijse.entity.Book;
 import lk.ijse.entity.Branch;
 import lk.ijse.entity.User;
 import lk.ijse.repository.RepositoryFactory;
+import lk.ijse.repository.custom.BookRepository;
 import lk.ijse.repository.custom.BranchRepository;
 import lk.ijse.repository.custom.UserRepository;
 import lk.ijse.util.SessionFactoryConfig;
@@ -33,11 +35,12 @@ public class BranchBOImpl implements BranchBO {
         session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
+        userRepository.setSession(session);
         User user = userRepository.search(branchDto.getUserName());
 
         try {
             branchRepository.setSession(session);
-            boolean save = branchRepository.save(new Branch(branchDto.getId(), branchDto.getLocation(), user));
+            boolean save = branchRepository.save(new Branch(branchDto.getId(), branchDto.getLocation(), user, new ArrayList<>()));
 
             transaction.commit();
             session.close();
@@ -56,11 +59,12 @@ public class BranchBOImpl implements BranchBO {
         session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
+        userRepository.setSession(session);
         User user = userRepository.search(branchDto.getUserName());
 
         try {
             branchRepository.setSession(session);
-            boolean update = branchRepository.update(new Branch(branchDto.getId(), branchDto.getLocation(), user));
+            boolean update = branchRepository.update(new Branch(branchDto.getId(), branchDto.getLocation(), user,new ArrayList<>()));
 
             transaction.commit();
             session.close();
@@ -79,11 +83,12 @@ public class BranchBOImpl implements BranchBO {
         session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
+        userRepository.setSession(session);
         User user = userRepository.search(branchDto.getUserName());
 
         try {
             branchRepository.setSession(session);
-            boolean delete = branchRepository.delete(new Branch(branchDto.getId(), branchDto.getLocation(), user));
+            boolean delete = branchRepository.delete(new Branch(branchDto.getId(), branchDto.getLocation(), user, new ArrayList<>()));
 
             transaction.commit();
             session.close();
@@ -100,6 +105,8 @@ public class BranchBOImpl implements BranchBO {
     @Override
     public Branch searchBranch(String id) {
         session = SessionFactoryConfig.getInstance().getSession();
+
+        System.out.println("id "+id);
 
         try {
             branchRepository.setSession(session);

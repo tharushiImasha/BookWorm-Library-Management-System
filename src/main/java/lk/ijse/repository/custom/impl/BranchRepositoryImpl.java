@@ -19,6 +19,11 @@ public class BranchRepositoryImpl implements BranchRepository {
     }
 
     @Override
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    @Override
     public boolean save(Branch entity) {
         try {
             session.save(entity);
@@ -61,6 +66,7 @@ public class BranchRepositoryImpl implements BranchRepository {
             return branch;
 
         }catch (Exception e) {
+            System.out.println("error "+e);
             e.printStackTrace();
             throw e;
         }
@@ -78,8 +84,4 @@ public class BranchRepositoryImpl implements BranchRepository {
         return list;
     }
 
-    @Override
-    public void setSession(Session session) {
-        this.session = session;
-    }
 }

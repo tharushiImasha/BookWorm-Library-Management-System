@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 @Entity
 @Table(name = "branch")
 public class Branch {
@@ -25,17 +26,17 @@ public class Branch {
     @JoinColumn(name = "user_name")
     private User user;
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "branch")
-//    private List<BooksDetail> booksDetails = new ArrayList<>();
-
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "branch")
+    private List<Book> books = new ArrayList<>();
 
     public Branch() {
     }
 
-    public Branch(String id, String location, User user) {
+    public Branch(String id, String location, User user, List<Book> books) {
         this.id = id;
         this.location = location;
         this.user = user;
+        this.books = books;
     }
 
     public String getId() {
@@ -60,6 +61,14 @@ public class Branch {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     public BranchDto toDto(){

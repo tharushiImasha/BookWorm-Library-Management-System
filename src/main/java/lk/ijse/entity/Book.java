@@ -2,14 +2,9 @@ package lk.ijse.entity;
 
 import jakarta.persistence.*;
 import lk.ijse.dto.BookDto;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 @Entity
 @Table(name = "book")
@@ -26,16 +21,15 @@ public class Book {
     @Column
     private String author;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 1000)
     private String desc;
 
     @Column
     private String genre;
 
-//    @Lob
-//    @Column
-//    private byte[] imageData;
-
+    @Lob
+    @Column(name = "image", columnDefinition = "LONGBLOB")
+    private byte[] image;
 
     @ManyToOne
     @JoinColumn(name = "branch_id")
@@ -47,12 +41,13 @@ public class Book {
     public Book() {
     }
 
-    public Book(String id, String title, String author, String desc, String genre, Branch branch, List<BorrowedDetails> borrowedDetails) {
+    public Book(String id, String title, String author, String desc, String genre, byte[] image, Branch branch, List<BorrowedDetails> borrowedDetails) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.desc = desc;
         this.genre = genre;
+        this.image = image;
         this.branch = branch;
         this.borrowedDetails = borrowedDetails;
     }
@@ -111,6 +106,14 @@ public class Book {
 
     public void setBorrowedDetails(List<BorrowedDetails> borrowedDetails) {
         this.borrowedDetails = borrowedDetails;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public BookDto toDto(){

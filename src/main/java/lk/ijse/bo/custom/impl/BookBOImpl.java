@@ -35,12 +35,13 @@ public class BookBOImpl implements BookBO {
         Transaction transaction = session.beginTransaction();
 
         branchRepository.setSession(session);
-        Branch b1 = branchRepository.search(bookDto.getId());
+        Branch b1 = branchRepository.search(bookDto.getBranchId());
+
+        System.out.println("bbb "+b1);
 
         try {
             bookRepository.setSession(session);
-            boolean save = bookRepository.save(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getGenre(), b1, null));
-
+            boolean save = bookRepository.save(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getGenre(), bookDto.getImage(), b1, null));
             transaction.commit();
             session.close();
             return save;
@@ -62,11 +63,11 @@ public class BookBOImpl implements BookBO {
         Transaction transaction = session.beginTransaction();
 
         branchRepository.setSession(session);
-        Branch b1 = branchRepository.search(bookDto.getId());
+        Branch b1 = branchRepository.search(bookDto.getBranchId());
 
         try {
             bookRepository.setSession(session);
-            boolean update = bookRepository.update(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getGenre(), b1, null));
+            boolean update = bookRepository.update(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getGenre(), bookDto.getImage(), b1, null));
 
             transaction.commit();
             session.close();
@@ -88,11 +89,11 @@ public class BookBOImpl implements BookBO {
         Transaction transaction = session.beginTransaction();
 
         branchRepository.setSession(session);
-        Branch b1 = branchRepository.search(bookDto.getId());
+        Branch b1 = branchRepository.search(bookDto.getBranchId());
 
         try {
             bookRepository.setSession(session);
-            boolean delete = bookRepository.delete(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getGenre(), b1, null));
+            boolean delete = bookRepository.delete(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getGenre(), bookDto.getImage(), b1, null));
 
             transaction.commit();
             session.close();
@@ -140,29 +141,6 @@ public class BookBOImpl implements BookBO {
                System.out.println(book.getBranch());
             }
 
-
-            session.close();
-            return bookDtoList;
-
-        } catch (Exception e) {
-            session.close();
-            e.printStackTrace();
-            throw e;
-        }
-    }
-
-    @Override
-    public List<BookDto> getBookBranch(Branch branch) {
-        session = SessionFactoryConfig.getInstance().getSession();
-
-        try {
-            bookRepository.setSession(session);
-            List<Book> all = bookRepository.getBookBranch(branch);
-            List<BookDto> bookDtoList = new ArrayList<>();
-
-            for (Book book : all){
-                bookDtoList.add(book.toDto());
-            }
 
             session.close();
             return bookDtoList;
@@ -258,6 +236,82 @@ public class BookBOImpl implements BookBO {
 
             session.close();
             return bookDtoList;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public byte[] getBookImg(String id) {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            bookRepository.setSession(session);
+            byte[] bookImg = bookRepository.getBookImg(id);
+
+            session.close();
+
+            return bookImg;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public String getTitle(String id) {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            bookRepository.setSession(session);
+            String title = bookRepository.getTitle(id);
+
+            session.close();
+
+            return title;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public String getAuthor(String id) {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            bookRepository.setSession(session);
+            String author = bookRepository.getAuthor(id);
+
+            session.close();
+
+            return author;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public String getDescd(String id) {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            bookRepository.setSession(session);
+            String author = bookRepository.getDesc(id);
+
+            session.close();
+
+            return author;
 
         } catch (Exception e) {
             session.close();

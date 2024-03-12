@@ -134,8 +134,9 @@ public class AdminDashboardPaneController {
     }
 
     @FXML
-    void rectdashboardOnAction(MouseEvent event) {
-
+    void rectdashboardOnAction(MouseEvent event) throws IOException {
+        childNode.getChildren().clear();
+        childNode.getChildren().add(FXMLLoader.load(childNode.getClass().getResource("/view/admin_dashboard.fxml")));
     }
 
     @FXML

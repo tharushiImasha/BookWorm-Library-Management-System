@@ -19,8 +19,7 @@ import lk.ijse.dto.UserDto;
 import lk.ijse.dto.tm.BookTm;
 import lk.ijse.entity.Book;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,6 +75,8 @@ public class BooksController {
 
     @FXML
     private TextField txtTitle;
+
+    private byte [] imageBytes;
 
     BookBO bookBO = (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.BOOK);
     BranchBO branchBO = (BranchBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.BRANCH);
@@ -185,6 +186,7 @@ public class BooksController {
         txtTitle.setText(dto.getTitle());
         txtAuthor.setText(dto.getAuthor());
         cmbGenre.setValue(dto.getGenre());
+        cmbBranch.setValue(dto.getBranchId());
     }
 
     private void deleteBooks(String id) {
@@ -231,7 +233,7 @@ public class BooksController {
         String bookId = txtId.getText();
         String branchId = cmbBranch.getValue();
 
-        var dto = new BookDto(bookId, title, author, desc, genre, branchId);
+        var dto = new BookDto(bookId, title, author, desc, genre, branchId, imageBytes);
 
         try {
 
@@ -258,8 +260,6 @@ public class BooksController {
         String bookId = txtId.getId();
         String branchId = cmbBranch.getValue();
 
-        //Book book = new Book();
-
         var dto = new BookDto(bookId, title, author, desc, genre, branchId);
 
         try {
@@ -279,21 +279,53 @@ public class BooksController {
 
     @FXML
     void btnSelectedOnAction(ActionEvent event) {
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Select Image File");
-//        // Set filter to only allow image files
-//        fileChooser.getExtensionFilters().addAll(
-//                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
-//        );
-//        File selectedFile = fileChooser.showOpenDialog(primaryStage);
-//
-//        Image image = new Image(new FileInputStream())
-//
-//        if (selectedFile != null) {
-//            // Load the selected image into the ImageView
-//            Image selectedImage = new Image(selectedFile.toURI().toString());
-//            imageView.setImage(selectedImage);
-//        }
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+        List<File> files = fileChooser.showOpenMultipleDialog(null);
+
+        for (File file : files){
+            try {
+                byte[] bytes = convertFileToBytes(file);
+
+                imageBytes = bytes;
+
+                Image image = convertBytesToImage(bytes);
+
+                imgBook.setImage(image);
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    private byte[] convertFileToBytes(File file) throws IOException {
+        FileInputStream fis = null;
+        ByteArrayOutputStream bos = null;
+
+        try {
+            fis = new FileInputStream(file);
+            bos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+
+            while ((bytesRead = fis.read(buffer)) != -1) {
+                bos.write(buffer, 0, bytesRead);
+            }
+
+            return bos.toByteArray();
+        } finally {
+            if (fis != null) {
+                fis.close();
+            }
+            if (bos != null) {
+                bos.close();
+            }
+        }
+    }
+
+    private Image convertBytesToImage(byte[] bytes) {
+        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+        return new Image(bis);
     }
 
 }

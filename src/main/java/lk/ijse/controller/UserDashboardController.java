@@ -6,22 +6,28 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import lk.ijse.bo.BOFactory;
-import lk.ijse.bo.custom.UserBO;
+import lk.ijse.bo.custom.BookBO;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
 public class UserDashboardController {
-    @FXML
-    private Text lblName;
 
     @FXML
     private Rectangle childrenRect;
@@ -36,6 +42,48 @@ public class UserDashboardController {
     private Rectangle horrorRect;
 
     @FXML
+    private ImageView imgB1;
+
+    @FXML
+    private ImageView imgB2;
+
+    @FXML
+    private ImageView imgB3;
+
+    @FXML
+    private ImageView imgB4;
+
+    @FXML
+    private Label lblAuthor1;
+
+    @FXML
+    private Label lblAuthor2;
+
+    @FXML
+    private Label lblAuthor3;
+
+    @FXML
+    private Label lblAuthor4;
+
+    @FXML
+    private Label lblB1;
+
+    @FXML
+    private Label lblB2;
+
+    @FXML
+    private Label lblB3;
+
+    @FXML
+    private Label lblB4;
+
+    @FXML
+    private Label lblDateTime;
+
+    @FXML
+    private Text lblName;
+
+    @FXML
     private Rectangle popularRect;
 
     @FXML
@@ -44,52 +92,61 @@ public class UserDashboardController {
     @FXML
     private Rectangle recentRect;
 
-    @FXML
-    private Label lblDateTime;
+    static String id;
 
-    UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.USER);
+    BookBO bookBO = (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.BOOK);
 
     public void initialize(){
-        //lblName.setText(LoginController.name + " !");
-        getName();
+        lblName.setText(LoginController.name + " !");
         generateTime();
+        setBook();
+        setTitle();
+        setAuthor();
     }
 
-    public void getName(){
-       String fullName = LoginController.name;
-       lblName.setText(fullName);
-
-//       String name = fullName.substring(0, fullName.indexOf(' '));
-//       lblName.setText(name + " !");
+    private void setAuthor() {
+        lblAuthor1.setText(bookBO.getAuthor("B1"));
+        lblAuthor2.setText(bookBO.getAuthor("B2"));
+        lblAuthor3.setText(bookBO.getAuthor("B3"));
+        lblAuthor4.setText(bookBO.getAuthor("B4"));
     }
 
-//    public void generateTime(){
-//        String month = new SimpleDateFormat("MMMM").format(new Date());
-//        String dayOfWeek = new SimpleDateFormat("EEEE").format(new Date());
-//        String currentDate = new SimpleDateFormat("dd, yyyy").format(new Date());
-//        String currentTime = new SimpleDateFormat("HH:mm").format(new Date());
-//
-//        lblDateTime.setText(month+" "+currentDate+" | "+dayOfWeek+", "+currentTime);
-//    }
+    private void setTitle() {
+        lblB1.setText(bookBO.getTitle("B1"));
+        lblB2.setText(bookBO.getTitle("B2"));
+        lblB3.setText(bookBO.getTitle("B3"));
+        lblB4.setText(bookBO.getTitle("B4"));
+    }
+
+    private void setBook() {
+        byte[] bytes1 = bookBO.getBookImg("B1");
+        ByteArrayInputStream bis1 = new ByteArrayInputStream(bytes1);
+        imgB1.setImage(new Image(bis1));
+
+        byte[] bytes2 = bookBO.getBookImg("B2");
+        ByteArrayInputStream bis2 = new ByteArrayInputStream(bytes2);
+        imgB2.setImage(new Image(bis2));
+
+        byte[] bytes3 = bookBO.getBookImg("B3");
+        ByteArrayInputStream bis3 = new ByteArrayInputStream(bytes3);
+        imgB3.setImage(new Image(bis3));
+
+        byte[] bytes4 = bookBO.getBookImg("B4");
+        ByteArrayInputStream bis4 = new ByteArrayInputStream(bytes4);
+        imgB4.setImage(new Image(bis4));
+    }
 
     public void generateTime() {
-        // Create a DateTimeFormatter for formatting the time
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy | EEEE, HH:mm");
 
-        // Create a Timeline to update the time every second
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1), event -> {
-                    // Get current time
                     LocalDateTime currentTime = LocalDateTime.now();
-                    // Format the time
                     String formattedTime = currentTime.format(formatter);
-                    // Update the UI on the JavaFX Application Thread
                     Platform.runLater(() -> lblDateTime.setText(formattedTime));
                 })
         );
-        // Set the cycle count to indefinite so the timeline keeps running
         timeline.setCycleCount(Animation.INDEFINITE);
-        // Start the timeline
         timeline.play();
     }
 
@@ -124,6 +181,70 @@ public class UserDashboardController {
     }
 
     @FXML
+    void imgB1inAction(MouseEvent event) throws IOException {
+        id = "B1";
+
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_details.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.centerOnScreen();
+        stage.show();
+    }
+
+    @FXML
+    void imgB2inAction(MouseEvent event) throws IOException {
+        id = "B2";
+
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_details.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.centerOnScreen();
+        stage.show();
+    }
+
+    @FXML
+    void imgB3inAction(MouseEvent event) throws IOException {
+        id = "B3";
+
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_details.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.centerOnScreen();
+        stage.show();
+    }
+
+    @FXML
+    void imgB4inAction(MouseEvent event) throws IOException {
+        id = "B4";
+
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_details.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.centerOnScreen();
+        stage.show();
+    }
+
+    @FXML
     void popularRectOnAction(MouseEvent event) {
 
     }
@@ -137,4 +258,5 @@ public class UserDashboardController {
     void searchOnAction(ActionEvent event) {
 
     }
+
 }

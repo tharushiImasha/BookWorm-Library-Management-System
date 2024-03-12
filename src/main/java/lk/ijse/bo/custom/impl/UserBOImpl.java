@@ -111,6 +111,8 @@ public class UserBOImpl implements UserBO {
             return update;
 
         } catch (Exception e) {
+            System.out.println(e);
+
             transaction.rollback();
             session.close();
             e.printStackTrace();

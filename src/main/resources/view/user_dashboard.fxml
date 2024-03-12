@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="932.0" prefWidth="1311.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserDashboardController">
+<AnchorPane prefHeight="932.0" prefWidth="1311.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserDashboardController">
    <children>
       <ImageView fitHeight="932.0" fitWidth="1311.0">
          <image>
@@ -88,5 +83,53 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="268.0" layoutX="187.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="268.0" layoutX="436.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="268.0" layoutX="684.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="268.0" layoutX="932.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Label fx:id="lblB1" alignment="CENTER" contentDisplay="CENTER" layoutX="189.0" layoutY="500.0" text="Title" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblB2" alignment="CENTER" contentDisplay="CENTER" layoutX="438.0" layoutY="500.0" text="Title" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblB3" alignment="CENTER" contentDisplay="CENTER" layoutX="686.0" layoutY="500.0" text="Title" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblB4" alignment="CENTER" contentDisplay="CENTER" layoutX="934.0" layoutY="500.0" text="Title" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAuthor1" alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="531.0" text="Author" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAuthor2" alignment="CENTER" contentDisplay="CENTER" layoutX="438.0" layoutY="531.0" text="Author" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAuthor3" alignment="CENTER" contentDisplay="CENTER" layoutX="686.0" layoutY="531.0" text="Author" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAuthor4" alignment="CENTER" contentDisplay="CENTER" layoutX="934.0" layoutY="531.0" text="Author" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgB1" fitHeight="268.0" fitWidth="200.0" layoutX="187.0" layoutY="222.0" onMouseClicked="#imgB1inAction" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgB2" fitHeight="268.0" fitWidth="200.0" layoutX="436.0" layoutY="222.0" onMouseClicked="#imgB2inAction" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgB3" fitHeight="268.0" fitWidth="200.0" layoutX="684.0" layoutY="222.0" onMouseClicked="#imgB3inAction" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgB4" fitHeight="268.0" fitWidth="200.0" layoutX="932.0" layoutY="222.0" onMouseClicked="#imgB4inAction" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

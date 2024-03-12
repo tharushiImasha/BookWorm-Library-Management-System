@@ -21,6 +21,14 @@ public class BookDto {
 
     private String branchId;
 
+    private byte[] image;
 
-    //private List<BooksDetail> booksDetails;
+    public BookDto(String id, String title, String author, String desc, String genre, String branchId) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.desc = desc;
+        this.genre = genre;
+        this.branchId = branchId;
+    }
 }

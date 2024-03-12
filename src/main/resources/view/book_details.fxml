@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="467.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BookDetailsController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="288.0" layoutX="44.0" layoutY="43.0" stroke="BLACK" strokeType="INSIDE" width="207.0" />
+      <Label fx:id="lblTitle" layoutX="279.0" layoutY="78.0" text="Title" textFill="#002b5b">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="284.0" layoutY="119.0" text="by">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAuthor" layoutX="315.0" layoutY="119.0" text="Daniel">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDesc" layoutX="287.0" layoutY="159.0" prefHeight="119.0" prefWidth="464.0" text="Description" wrapText="true">
+         <font>
+            <Font size="12.0" />
+         </font></Label>
+      <ImageView fx:id="available" fitHeight="36.0" fitWidth="153.0" layoutX="286.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Available.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="notAvailble" fitHeight="36.0" fitWidth="153.0" layoutX="286.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/NotAvailbale.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgBook" fitHeight="288.0" fitWidth="207.0" layoutX="44.0" layoutY="44.0" pickOnBounds="true" />
+      <JFXButton layoutX="44.0" layoutY="381.0" onAction="#btnBackOnAction" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="196.0" layoutY="381.0" onAction="#btnBorrowOnAction" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #002B5B; -fx-background-radius: 10;" text="Borrow" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="256.0" fitWidth="258.0" layoutX="522.0" layoutY="208.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/bookOageImg.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

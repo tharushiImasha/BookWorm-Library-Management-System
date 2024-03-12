@@ -61,8 +61,11 @@ public class BranchRepositoryImpl implements BranchRepository {
 
     @Override
     public Branch search(String id) {
+
+        System.out.println("id   "+id);
         try {
             Branch branch = session.get(Branch.class, id);
+            System.out.println("bra   "+branch);
             return branch;
 
         }catch (Exception e) {

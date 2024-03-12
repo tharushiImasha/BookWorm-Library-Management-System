@@ -9,8 +9,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BookBO;
+import lk.ijse.bo.custom.BorrowedBookBO;
+import lk.ijse.bo.custom.UserBO;
+import lk.ijse.dto.BorrowedDetailsDto;
+import lk.ijse.embedded.BorrowedDetailPK;
 
 import java.io.ByteArrayInputStream;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class BookDetailsController {
 
@@ -38,6 +44,8 @@ public class BookDetailsController {
     private String id;
 
     BookBO bookBO = (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.BOOK);
+    BorrowedBookBO borrowedBookBO = (BorrowedBookBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.BORROWEDDETAILS);
+    UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.USER);
 
     public void initialize(){
         id = UserDashboardController.id;
@@ -75,7 +83,20 @@ public class BookDetailsController {
 
     @FXML
     void btnBorrowOnAction(ActionEvent event) {
+        Timestamp borrowingDateTime = new Timestamp(System.currentTimeMillis());
 
+        LocalDateTime localDateTime = borrowingDateTime.toLocalDateTime();
+
+        int weeksToAdd = 1;
+        LocalDateTime updatedTimestamp = localDateTime.plusWeeks(weeksToAdd);
+
+        Timestamp dueDateTime = Timestamp.valueOf(updatedTimestamp);
+
+        String userName = userBO.getUserName(LoginController.name);
+
+        BorrowedDetailPK borrowedDetailPK = new BorrowedDetailPK(id, userName);
+
+        borrowedBookBO.saveBorrowedDetail(new BorrowedDetailsDto(borrowedDetailPK, borrowingDateTime, dueDateTime, null));
     }
 
 }

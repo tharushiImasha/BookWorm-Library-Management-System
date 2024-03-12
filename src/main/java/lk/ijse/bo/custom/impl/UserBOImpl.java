@@ -204,4 +204,21 @@ public class UserBOImpl implements UserBO {
             throw e;
         }
     }
+
+    @Override
+    public String getUserName(String name) {
+        session = SessionFactoryConfig.getInstance().getSession();
+        try {
+            userRepository.setSession(session);
+            String userName = userRepository.getUserName(name);
+
+            session.close();
+            return userName;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

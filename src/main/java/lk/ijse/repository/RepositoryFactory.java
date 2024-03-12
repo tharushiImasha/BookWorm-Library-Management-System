@@ -1,6 +1,7 @@
 package lk.ijse.repository;
 
 import lk.ijse.repository.custom.impl.BookRepositoryImpl;
+import lk.ijse.repository.custom.impl.BorrowedBookRepositoryImpl;
 import lk.ijse.repository.custom.impl.BranchRepositoryImpl;
 import lk.ijse.repository.custom.impl.UserRepositoryImpl;
 
@@ -15,7 +16,7 @@ public class RepositoryFactory {
     }
 
     public enum DaoTypes{
-        USER, BRANCH, BOOK
+        USER, BRANCH, BOOK, BORROWEDDETAILS
     }
 
     public SuperRepository getDAO(DaoTypes daoTypes){
@@ -26,6 +27,8 @@ public class RepositoryFactory {
                 return new BranchRepositoryImpl();
             case BOOK:
                 return new BookRepositoryImpl();
+            case BORROWEDDETAILS:
+                return new BorrowedBookRepositoryImpl();
             default:
                 return null;
         }

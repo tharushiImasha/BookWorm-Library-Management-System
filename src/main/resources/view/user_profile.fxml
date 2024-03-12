@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="rootNode" prefHeight="638.0" prefWidth="964.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserProfileController">
+   <children>
+      <Label layoutX="46.0" layoutY="33.0" text="Edit Profile Details" textFill="#002b5b">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="95.0" layoutY="108.0" text="Name :">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtName" layoutX="242.0" layoutY="101.0" prefHeight="35.0" prefWidth="405.0" style="-fx-border-color: #002B5B; -fx-border-radius: 8; -fx-background-radius: 8;" />
+      <Label layoutX="95.0" layoutY="224.0" text="User Name :">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtUserName" layoutX="242.0" layoutY="217.0" prefHeight="35.0" prefWidth="405.0" style="-fx-border-color: #002B5B; -fx-border-radius: 8; -fx-background-radius: 8;" />
+      <Label layoutX="95.0" layoutY="283.0" text="Password :">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPassword" layoutX="242.0" layoutY="276.0" prefHeight="35.0" prefWidth="405.0" style="-fx-border-color: #002B5B; -fx-border-radius: 8; -fx-background-radius: 8;" />
+      <JFXButton layoutX="715.0" layoutY="99.0" onAction="#btnUpdateOnAction" prefHeight="40.0" prefWidth="157.0" style="-fx-background-color: #002B5B; -fx-background-radius: 10;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="715.0" layoutY="167.0" onAction="#btnLogoutOnAction" prefHeight="40.0" prefWidth="157.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Logout" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="45.0" layoutY="355.0" text="Your Borrowed Books" textFill="#002b5b">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblBorrowedDetails" layoutX="107.0" layoutY="413.0" prefHeight="184.0" prefWidth="751.0">
+        <columns>
+          <TableColumn fx:id="colTitle" prefWidth="232.0" text="Book Title" />
+          <TableColumn fx:id="colBorrowedDate" prefWidth="255.0" text="Borrowed Date" />
+            <TableColumn fx:id="colDueDate" prefWidth="263.0" text="Due Date" />
+        </columns>
+      </TableView>
+      <ImageView fitHeight="192.0" fitWidth="192.0" layoutX="693.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/userProfile.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="95.0" layoutY="166.0" text="Email :">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtEmail" layoutX="242.0" layoutY="159.0" prefHeight="35.0" prefWidth="405.0" style="-fx-border-color: #002B5B; -fx-border-radius: 8; -fx-background-radius: 8;" />
+   </children>
+</AnchorPane>

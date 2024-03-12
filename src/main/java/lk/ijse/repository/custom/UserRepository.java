@@ -13,4 +13,6 @@ public interface UserRepository extends CrudRepository<User> {
     String getrole (String userName);
 
     List<User> getUsersAdmin ();
+
+    String getUserName(String name);
 }

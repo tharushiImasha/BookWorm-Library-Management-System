@@ -151,8 +151,17 @@ public class UserDashboardController {
     }
 
     @FXML
-    void ProfileOnAction(MouseEvent event) {
+    void ProfileOnAction(MouseEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/user_profile.fxml"));
 
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.centerOnScreen();
+        stage.show();
     }
 
     @FXML

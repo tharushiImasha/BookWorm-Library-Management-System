@@ -112,6 +112,31 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public String getUserName(String name) {
+        try {
+
+            String sql = "SELECT userName FROM User WHERE fullName like: name";
+
+            Query query = session.createQuery(sql).setParameter("name", name);
+
+            List list = query.list();
+
+            if (list.isEmpty()){
+                return null;
+            }else {
+
+                return (String) list.get(0);
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+
+        }
+    }
+
+    @Override
     public boolean save(User entity) {
         try {
             session.save(entity);

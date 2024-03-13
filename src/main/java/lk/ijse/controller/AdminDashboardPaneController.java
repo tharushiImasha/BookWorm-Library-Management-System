@@ -79,9 +79,12 @@ public class AdminDashboardPaneController {
     @FXML
     private ImageView usersOn;
 
-    public void initialize(){
+    public void initialize() throws IOException {
         lblName.setText(LoginController.name + " !");
         generateTime();
+
+        childNode.getChildren().clear();
+        childNode.getChildren().add(FXMLLoader.load(childNode.getClass().getResource("/view/admin_dashboard.fxml")));
     }
 
     public void generateTime() {

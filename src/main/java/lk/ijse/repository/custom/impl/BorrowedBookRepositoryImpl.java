@@ -3,10 +3,12 @@ package lk.ijse.repository.custom.impl;
 import lk.ijse.dto.BorrowedDetailsDto;
 import lk.ijse.embedded.BorrowedDetailPK;
 import lk.ijse.entity.BorrowedDetails;
+import lk.ijse.entity.User;
 import lk.ijse.repository.custom.BorrowedBookRepository;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
@@ -38,7 +40,14 @@ public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
 
     @Override
     public boolean update(BorrowedDetails entity) {
-        return false;
+        try {
+            session.update(entity);
+            return true;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
@@ -68,11 +77,6 @@ public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
     @Override
     public List<BorrowedDetailsDto> getAllBorrowedFromUser(String userName) {
 
-//        String sql = "SELECT bo FROM BorrowedDetails AS bo WHERE borrowedDetailPK.userName = :name";
-//        Query query = session.createQuery(sql).setParameter("name", userName);
-//
-//        List list = query.list();
-
         Query<BorrowedDetails> query = session.createQuery("SELECT bd FROM BorrowedDetails bd " + "WHERE bd.user.username = :username", BorrowedDetails.class);
         query.setParameter("username", userName);
 
@@ -83,5 +87,55 @@ public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
         session.close();
 
         return list;
+    }
+
+    @Override
+    public BorrowedDetails searchBorrowedDetails(String id, String userName) {
+
+        BorrowedDetailPK borrowedDetailPK = new BorrowedDetailPK(id, userName);
+
+        try {
+            BorrowedDetails borrowedDetails = session.get(BorrowedDetails.class, borrowedDetailPK);
+            return borrowedDetails;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public String getUserNameFromBorrowed(String bookId) {
+        String jpql = "SELECT bd.user.userName FROM BorrowedDetails bd WHERE bd.book.id = :bookId";
+        String userName = session.createQuery(jpql, String.class)
+                .setParameter("bookId", bookId)
+                .getSingleResult();
+
+        session.close();
+
+        return userName;
+    }
+
+    @Override
+    public boolean checkReturnDate(String bookId) {
+        boolean isNull = false;
+
+        String jpql = "SELECT bd.returnDate FROM BorrowedDetails bd WHERE bd.book.id = :bookId";
+        List<Timestamp> returnDates = session.createQuery(jpql, Timestamp.class)
+                .setParameter("bookId", bookId)
+                .getResultList();
+
+        for (Timestamp returnDate : returnDates) {
+            if (returnDate == null) {
+                System.out.println("Return date is null");
+                isNull = true;
+            } else {
+                System.out.println("Return date: " + returnDate.toString());
+                isNull = false;
+            }
+        }
+
+        return isNull;
+
     }
 }

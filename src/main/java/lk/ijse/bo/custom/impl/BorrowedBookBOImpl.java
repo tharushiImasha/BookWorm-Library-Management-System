@@ -3,6 +3,7 @@ package lk.ijse.bo.custom.impl;
 import lk.ijse.bo.custom.BorrowedBookBO;
 import lk.ijse.dto.BorrowedDetailsDto;
 import lk.ijse.entity.BorrowedDetails;
+import lk.ijse.entity.User;
 import lk.ijse.repository.RepositoryFactory;
 import lk.ijse.repository.custom.BorrowedBookRepository;
 import lk.ijse.util.SessionFactoryConfig;
@@ -36,6 +37,27 @@ public class BorrowedBookBOImpl implements BorrowedBookBO {
             System.out.println("ooo "+dto.getBorrowedDetailPK());
 
             boolean save = borrowedBookRepository.save(new BorrowedDetails(dto.getBorrowedDetailPK(), dto.getBorrowedDate(), dto.getDueDate(), dto.getReturnDate()));
+
+            transaction.commit();
+            session.close();
+            return save;
+        } catch (Exception e) {
+            transaction.rollback();
+            session.close();
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateBorrowedDetail(BorrowedDetailsDto dto) {
+        session = SessionFactoryConfig.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            borrowedBookRepository.setSession(session);
+
+            boolean save = borrowedBookRepository.update(new BorrowedDetails(dto.getBorrowedDetailPK(), dto.getBorrowedDate(), dto.getDueDate(), dto.getReturnDate()));
 
             transaction.commit();
             session.close();
@@ -93,4 +115,59 @@ public class BorrowedBookBOImpl implements BorrowedBookBO {
             throw e;
         }
     }
+
+    @Override
+    public BorrowedDetails searchBorrowedDetails(String id, String userName) {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            borrowedBookRepository.setSession(session);
+            BorrowedDetails search = borrowedBookRepository.searchBorrowedDetails(id, userName);
+
+            session.close();
+            return search;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public String getUserNameFromBorrowed(String bookId) {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            borrowedBookRepository.setSession(session);
+            String userNameFromBorrowed = borrowedBookRepository.getUserNameFromBorrowed(bookId);
+
+            session.close();
+            return userNameFromBorrowed;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public boolean checkReturnDate(String bookId) {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            borrowedBookRepository.setSession(session);
+            boolean isNull = borrowedBookRepository.checkReturnDate(bookId);
+
+            session.close();
+            return isNull;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
 }

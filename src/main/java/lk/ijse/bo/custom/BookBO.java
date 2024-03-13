@@ -34,4 +34,6 @@ public interface BookBO extends SuperBO {
     String getDescd(String id);
 
     String getStatus(String id);
+
+    String getId(String title);
 }

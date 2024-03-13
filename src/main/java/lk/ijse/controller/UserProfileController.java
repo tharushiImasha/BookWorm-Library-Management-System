@@ -1,5 +1,6 @@
 package lk.ijse.controller;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BookBO;
 import lk.ijse.bo.custom.BorrowedBookBO;
@@ -37,6 +39,9 @@ public class UserProfileController {
     private TableColumn<?, ?> colTitle;
 
     @FXML
+    private TableColumn<?, ?> colReturn;
+
+    @FXML
     private TextField txtName;
 
     @FXML
@@ -53,6 +58,10 @@ public class UserProfileController {
 
     String userName;
 
+    String returned;
+
+    String bookId;
+
     UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.USER);
     BookBO bookBO = (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.BOOK);
     BorrowedBookBO borrowedBookBO = (BorrowedBookBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.BORROWEDDETAILS);
@@ -60,14 +69,31 @@ public class UserProfileController {
     public void initialize() {
         userName = userBO.getUserName(LoginController.name);
 
+        boolean isNull = borrowedBookBO.checkReturnDate(bookId);
+        if (isNull){
+            returned = "Not";
+        }else {
+            returned = "Returned";
+        }
+
         setCellValueFactory();
         loadAllBooks();
+        checkReturned();
     }
 
     private void setCellValueFactory() {
         colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         colBorrowedDate.setCellValueFactory(new PropertyValueFactory<>("borrowedDate"));
         colDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+
+        if (returned.equals("Not")){
+            System.out.println(returned);
+
+            String status = "Not";
+            colReturn.setCellValueFactory(new PropertyValueFactory<>(status));
+        }
+
+
     }
 
     private void loadAllBooks() {
@@ -78,9 +104,16 @@ public class UserProfileController {
 
             for(BorrowedDetailsDto dto : dtoList){
 
+                bookId = dto.getBorrowedDetailPK().getId();
+
+                boolean isNull = borrowedBookBO.checkReturnDate(bookId);
+                returned = isNull ? "Not" : "Returned";
+
+                System.out.println("return    "+returned);
+
                 String title = bookBO.getTitle(dto.getBorrowedDetailPK().getId());
 
-                var tm = new BorrowedDetailsTm(dto.getBorrowedDetailPK(), dto.getBorrowedDate(), dto.getDueDate(), title);
+                var tm = new BorrowedDetailsTm(dto.getBorrowedDetailPK(), dto.getBorrowedDate(), dto.getDueDate(), title, returned);
 
                 obList.add(tm);
 
@@ -90,6 +123,15 @@ public class UserProfileController {
 
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void checkReturned() {
+        boolean isNull = borrowedBookBO.checkReturnDate(bookId);
+        if (isNull){
+            returned = "Not";
+        }else {
+            returned = "Returned";
         }
     }
 

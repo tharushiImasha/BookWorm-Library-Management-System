@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootNode" prefHeight="638.0" prefWidth="964.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserProfileController">
+<AnchorPane fx:id="rootNode" prefHeight="638.0" prefWidth="964.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserProfileController">
    <children>
       <Label layoutX="46.0" layoutY="33.0" text="Edit Profile Details" textFill="#002b5b">
          <font>
@@ -46,11 +50,12 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <TableView fx:id="tblBorrowedDetails" layoutX="107.0" layoutY="413.0" prefHeight="184.0" prefWidth="751.0">
+      <TableView fx:id="tblBorrowedDetails" layoutX="52.0" layoutY="413.0" prefHeight="184.0" prefWidth="858.0">
         <columns>
-          <TableColumn fx:id="colTitle" prefWidth="232.0" text="Book Title" />
-          <TableColumn fx:id="colBorrowedDate" prefWidth="255.0" text="Borrowed Date" />
-            <TableColumn fx:id="colDueDate" prefWidth="263.0" text="Due Date" />
+          <TableColumn fx:id="colTitle" prefWidth="222.0" text="Book Title" />
+          <TableColumn fx:id="colBorrowedDate" prefWidth="241.0" text="Borrowed Date" />
+            <TableColumn fx:id="colDueDate" prefWidth="239.0" text="Due Date" />
+            <TableColumn fx:id="colFReturn" prefWidth="155.0" text="Rerurn Status" />
         </columns>
       </TableView>
       <ImageView fitHeight="192.0" fitWidth="192.0" layoutX="693.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">

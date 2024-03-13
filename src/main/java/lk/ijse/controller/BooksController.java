@@ -4,12 +4,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BookBO;
 import lk.ijse.bo.custom.BranchBO;
@@ -290,8 +295,44 @@ public class BooksController {
         }
     }
 
+//    @FXML
+//    void btnSelectedOnAction(ActionEvent event) {
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+//        List<File> files = fileChooser.showOpenMultipleDialog(null);
+//
+//        for (File file : files){
+//            try {
+//                byte[] bytes = convertFileToBytes(file);
+//
+//                imageBytes = bytes;
+//
+//                Image image = convertBytesToImage(bytes);
+//
+//                imgBook.setImage(image);
+//
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//    }
+
     @FXML
-    void btnSelectedOnAction(ActionEvent event) {
+    void borrowedBooksOnAction(ActionEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/borrowedBookTable.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.centerOnScreen();
+        stage.show();
+    }
+
+    @FXML
+    void imgOnAction(MouseEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         List<File> files = fileChooser.showOpenMultipleDialog(null);
@@ -311,6 +352,7 @@ public class BooksController {
             }
         }
     }
+
     private byte[] convertFileToBytes(File file) throws IOException {
         FileInputStream fis = null;
         ByteArrayOutputStream bos = null;

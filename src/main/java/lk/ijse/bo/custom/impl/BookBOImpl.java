@@ -338,4 +338,23 @@ public class BookBOImpl implements BookBO {
             throw e;
         }
     }
+
+    @Override
+    public String getId(String title) {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            bookRepository.setSession(session);
+            String id = bookRepository.getId(title);
+
+            session.close();
+
+            return id;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
 }

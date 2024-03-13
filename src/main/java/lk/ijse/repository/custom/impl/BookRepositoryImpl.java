@@ -199,4 +199,16 @@ public class BookRepositoryImpl implements BookRepository {
 
         return status;
     }
+
+    @Override
+    public String getId(String title) {
+        String sql = "SELECT id FROM Book WHERE title = :title";
+        Query query = session.createQuery(sql).setParameter("title", title);
+
+        String status = (String) query.list().get(0);
+
+        session.close();
+
+        return status;
+    }
 }

@@ -41,7 +41,7 @@ public class BookBOImpl implements BookBO {
 
         try {
             bookRepository.setSession(session);
-            boolean save = bookRepository.save(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getGenre(), bookDto.getImage(), b1, null));
+            boolean save = bookRepository.save(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getGenre(), bookDto.getImage(),bookDto.getStatus(), b1, null));
             transaction.commit();
             session.close();
             return save;
@@ -67,7 +67,7 @@ public class BookBOImpl implements BookBO {
 
         try {
             bookRepository.setSession(session);
-            boolean update = bookRepository.update(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getGenre(), bookDto.getImage(), b1, null));
+            boolean update = bookRepository.update(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getGenre(), bookDto.getImage(), bookDto.getStatus(), b1, null));
 
             transaction.commit();
             session.close();
@@ -93,7 +93,7 @@ public class BookBOImpl implements BookBO {
 
         try {
             bookRepository.setSession(session);
-            boolean delete = bookRepository.delete(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getGenre(), bookDto.getImage(), b1, null));
+            boolean delete = bookRepository.delete(new Book(bookDto.getId(),bookDto.getTitle(), bookDto.getAuthor(), bookDto.getDesc(), bookDto.getGenre(), bookDto.getImage(), bookDto.getStatus(), b1, null));
 
             transaction.commit();
             session.close();
@@ -137,7 +137,7 @@ public class BookBOImpl implements BookBO {
             List<BookDto> bookDtoList = new ArrayList<>();
 
             for (Book book : all){
-               bookDtoList.add(new BookDto(book.getId(), book.getTitle(), book.getAuthor(), book.getDesc(), book.getGenre(), book.getBranch().getId()));
+               bookDtoList.add(new BookDto(book.getId(), book.getTitle(), book.getAuthor(), book.getDesc(), book.getGenre(), book.getBranch().getId(), book.getStatus()));
                System.out.println(book.getBranch());
             }
 
@@ -312,6 +312,25 @@ public class BookBOImpl implements BookBO {
             session.close();
 
             return author;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public String getStatus(String id) {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            bookRepository.setSession(session);
+            String status = bookRepository.getStatus(id);
+
+            session.close();
+
+            return status;
 
         } catch (Exception e) {
             session.close();

@@ -23,12 +23,20 @@ public class BookDto {
 
     private byte[] image;
 
-    public BookDto(String id, String title, String author, String desc, String genre, String branchId) {
+    private String status;
+
+    public BookDto(String id, String title, String author, String desc, String genre, String branchId, String status) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.desc = desc;
         this.genre = genre;
         this.branchId = branchId;
+        this.status = status;
+    }
+
+    public BookDto(String id, String status) {
+        this.id = id;
+        this.status = status;
     }
 }

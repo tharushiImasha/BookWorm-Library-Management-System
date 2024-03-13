@@ -22,5 +22,9 @@ public class BookTm {
 
     private String branchId;
 
+    private String status;
+
+    private byte[] image;
+
     private Button btn;
 }

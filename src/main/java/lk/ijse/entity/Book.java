@@ -31,6 +31,9 @@ public class Book {
     @Column(name = "image", columnDefinition = "LONGBLOB")
     private byte[] image;
 
+    @Column
+    private String status;
+
     @ManyToOne
     @JoinColumn(name = "branch_id")
     private Branch branch;
@@ -41,13 +44,14 @@ public class Book {
     public Book() {
     }
 
-    public Book(String id, String title, String author, String desc, String genre, byte[] image, Branch branch, List<BorrowedDetails> borrowedDetails) {
+    public Book(String id, String title, String author, String desc, String genre, byte[] image, String status, Branch branch, List<BorrowedDetails> borrowedDetails) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.desc = desc;
         this.genre = genre;
         this.image = image;
+        this.status = status;
         this.branch = branch;
         this.borrowedDetails = borrowedDetails;
     }
@@ -116,6 +120,14 @@ public class Book {
         this.image = image;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public BookDto toDto(){
         BookDto bookDto = new BookDto();
         bookDto.setId(this.id);
@@ -124,6 +136,7 @@ public class Book {
         bookDto.setAuthor(this.author);
         bookDto.setGenre(this.genre);
 
+
         bookDto.setBranchId(this.branch.getId());
         //bookDto.setBooksDetails(this.booksDetails);
 
@@ -131,5 +144,4 @@ public class Book {
 
         return bookDto;
     }
-    //private byte[] image;
 }

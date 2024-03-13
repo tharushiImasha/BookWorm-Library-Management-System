@@ -21,4 +21,6 @@ public interface BookRepository extends CrudRepository<Book> {
     String getAuthor(String id);
 
     String getDesc(String id);
+
+    String getStatus(String id);
 }

@@ -1,7 +1,6 @@
 package lk.ijse.repository.custom.impl;
 
 import lk.ijse.entity.Book;
-import lk.ijse.entity.Branch;
 import lk.ijse.repository.custom.BookRepository;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -187,5 +186,17 @@ public class BookRepositoryImpl implements BookRepository {
         session.close();
 
         return author;
+    }
+
+    @Override
+    public String getStatus(String bId) {
+        String sql = "SELECT status FROM Book WHERE id = :id";
+        Query query = session.createQuery(sql).setParameter("id", bId);
+
+        String status = (String) query.list().get(0);
+
+        session.close();
+
+        return status;
     }
 }

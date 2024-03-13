@@ -9,9 +9,6 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 
 @Entity
 @Table(name = "user")
@@ -56,5 +53,74 @@ public class User {
         this.fullName = fullName;
         this.password = password;
         this.userRole = userRole;
+    }
+
+    public User() {
+    }
+
+    public User(String userName, String email, String fullName, String password, String userRole, List<Branch> branches, List<BorrowedDetails> borrowedDetails) {
+        this.userName = userName;
+        this.email = email;
+        this.fullName = fullName;
+        this.password = password;
+        this.userRole = userRole;
+        this.branches = branches;
+        this.borrowedDetails = borrowedDetails;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+
+    public List<Branch> getBranches() {
+        return branches;
+    }
+
+    public void setBranches(List<Branch> branches) {
+        this.branches = branches;
+    }
+
+    public List<BorrowedDetails> getBorrowedDetails() {
+        return borrowedDetails;
+    }
+
+    public void setBorrowedDetails(List<BorrowedDetails> borrowedDetails) {
+        this.borrowedDetails = borrowedDetails;
     }
 }

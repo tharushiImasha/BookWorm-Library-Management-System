@@ -44,7 +44,7 @@ public class BooksController {
     private TableColumn<?, ?> colBookId;
 
     @FXML
-    private TableColumn<?, ?> colDesc;
+    private TableColumn<?, ?> colStatus;
 
     @FXML
     private TableColumn<?, ?> colGenre;
@@ -116,7 +116,7 @@ public class BooksController {
         colBookId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
-        colDesc.setCellValueFactory(new PropertyValueFactory<>("desc"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
     }
@@ -149,7 +149,7 @@ public class BooksController {
 
                 });
 
-                var tm = new BookTm(dto.getId(), dto.getTitle(), dto.getAuthor(),dto.getDesc(), dto.getGenre(), dto.getBranchId(), btn);
+                var tm = new BookTm(dto.getId(), dto.getTitle(), dto.getAuthor(),dto.getDesc(), dto.getGenre(), dto.getBranchId(), dto.getStatus(), dto.getImage(), btn);
 
                 System.out.println(dto.getId());
                 System.out.println(dto.getGenre());
@@ -174,7 +174,9 @@ public class BooksController {
                             newValue.getAuthor(),
                             newValue.getDesc(),
                             newValue.getGenre(),
-                            newValue.getBranchId()
+                            newValue.getBranchId(),
+                            newValue.getImage(),
+                            newValue.getStatus()
                     );
                     setFields(dto);
                 });
@@ -187,6 +189,13 @@ public class BooksController {
         txtAuthor.setText(dto.getAuthor());
         cmbGenre.setValue(dto.getGenre());
         cmbBranch.setValue(dto.getBranchId());
+
+        if (dto.getImage() != null) {
+            Image image = new Image(new ByteArrayInputStream(dto.getImage()));
+            imgBook.setImage(image);
+        } else {
+            imgBook.setImage(null);
+        }
     }
 
     private void deleteBooks(String id) {
@@ -194,12 +203,12 @@ public class BooksController {
         String author = txtAuthor.getText();
         String desc = txtDesc.getText();
         String genre = cmbGenre.getValue();
-        String bookId = txtId.getId();
+        String bookId = txtId.getText();
         String branchId = cmbBranch.getValue();
 
-        //BookDto bookDto = new BookDto();
+        String status = "Available";
 
-        var dto = new BookDto(bookId, title, author, desc, genre, branchId);
+        var dto = new BookDto(bookId, title, author, desc, genre, branchId, status);
 
         try {
 
@@ -233,7 +242,9 @@ public class BooksController {
         String bookId = txtId.getText();
         String branchId = cmbBranch.getValue();
 
-        var dto = new BookDto(bookId, title, author, desc, genre, branchId, imageBytes);
+        String status = "Available";
+
+        var dto = new BookDto(bookId, title, author, desc, genre, branchId, imageBytes, status);
 
         try {
 
@@ -257,16 +268,18 @@ public class BooksController {
         String title = txtTitle.getText();
         String desc = txtDesc.getText();
         String genre = cmbBranch.getValue();
-        String bookId = txtId.getId();
+        String bookId = txtId.getText();
         String branchId = cmbBranch.getValue();
 
-        var dto = new BookDto(bookId, title, author, desc, genre, branchId);
+        String status = "Available";
+
+        var dto = new BookDto(bookId, title, author, desc, genre, branchId, imageBytes, status);
 
         try {
 
-            boolean isSaved = bookBO.updateBook(dto);
+            boolean isUpdated = bookBO.updateBook(dto);
 
-            if (isSaved){
+            if (isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION, "Book updated!").show();
             } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "Book not updated!").show();

@@ -17,4 +17,6 @@ public class BorrowedDetailsTm {
     private Timestamp borrowedDate;
 
     private Timestamp dueDate;
+
+    private String title;
 }

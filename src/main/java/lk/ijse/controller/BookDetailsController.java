@@ -2,6 +2,7 @@ package lk.ijse.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,8 +12,10 @@ import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BookBO;
 import lk.ijse.bo.custom.BorrowedBookBO;
 import lk.ijse.bo.custom.UserBO;
+import lk.ijse.dto.BookDto;
 import lk.ijse.dto.BorrowedDetailsDto;
 import lk.ijse.embedded.BorrowedDetailPK;
+import lk.ijse.entity.Book;
 
 import java.io.ByteArrayInputStream;
 import java.sql.Timestamp;
@@ -54,6 +57,15 @@ public class BookDetailsController {
         setTitle();
         setAuthor();
         setDesc();
+
+        if (bookBO.getStatus(id).equals("Available")){
+            notAvailble.setVisible(false);
+            available.setVisible(true);
+        }else {
+            notAvailble.setVisible(true);
+            available.setVisible(false);
+        }
+
     }
 
     private void setDesc() {
@@ -96,7 +108,26 @@ public class BookDetailsController {
 
         BorrowedDetailPK borrowedDetailPK = new BorrowedDetailPK(id, userName);
 
-        borrowedBookBO.saveBorrowedDetail(new BorrowedDetailsDto(borrowedDetailPK, borrowingDateTime, dueDateTime, null));
+        if (bookBO.getStatus(id).equals("Available")){
+
+            Book book = bookBO.searchBook(id);
+
+            boolean isUpdated = bookBO.updateBook(new BookDto(id, book.getTitle(), book.getAuthor(), book.getDesc(), book.getGenre(), book.getBranch().getId(), book.getImage(), "Not Available"));
+
+            if (isUpdated){
+                boolean isSaved = borrowedBookBO.saveBorrowedDetail(new BorrowedDetailsDto(borrowedDetailPK, borrowingDateTime, dueDateTime, null));
+
+                if (isSaved){
+                    available.setVisible(false);
+                    notAvailble.setVisible(true);
+                }
+
+            }
+
+        }else {
+            new Alert(Alert.AlertType.CONFIRMATION, "Book Not Available").show();
+        }
+
     }
 
 }

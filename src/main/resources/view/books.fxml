@@ -39,14 +39,14 @@
          </font>
       </Label>
       <TextField fx:id="txtPhoto" layoutX="574.0" layoutY="86.0" prefHeight="203.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF; -fx-background-radius: 8;" />
-      <ImageView fx:id="imgBook" fitHeight="174.0" fitWidth="144.0" layoutX="586.0" layoutY="101.0" onMouseClicked="#imgOnAction" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgBook" fitHeight="174.0" fitWidth="144.0" layoutX="586.0" layoutY="101.0" onMouseClicked="#imgOnAction" pickOnBounds="true" />
       <Label layoutX="786.0" layoutY="88.0" text="Genre :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <ComboBox fx:id="cmbGenre" layoutX="875.0" layoutY="87.0" prefHeight="24.0" prefWidth="168.0" style="-fx-background-color: #CFE6FF;" />
-      <JFXButton layoutX="267.0" layoutY="331.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="save">
+      <JFXButton layoutX="267.0" layoutY="323.0" onAction="#btnSaveOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="save">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -54,7 +54,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="486.0" layoutY="331.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Update">
+      <JFXButton layoutX="486.0" layoutY="323.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Update">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -62,7 +62,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="698.0" layoutY="331.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Clear">
+      <JFXButton layoutX="698.0" layoutY="323.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Clear">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -105,6 +105,15 @@
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="36.0" layoutX="47.0" layoutY="378.0" stroke="WHITE" strokeType="INSIDE" width="165.0" />
       <JFXButton buttonType="RAISED" layoutX="45.0" layoutY="381.0" onAction="#borrowedBooksOnAction" ripplerFill="WHITE" text="Borrowed Books -&gt;" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="36.0" layoutX="229.0" layoutY="378.0" stroke="WHITE" strokeType="INSIDE" width="165.0" />
+      <JFXButton buttonType="RAISED" layoutX="227.0" layoutY="381.0" onAction="#overDueBooksOnAction" ripplerFill="WHITE" text="OverDeu Books -&gt;" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>

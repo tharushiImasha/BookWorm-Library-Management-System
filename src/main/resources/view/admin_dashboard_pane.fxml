@@ -20,7 +20,7 @@
             <Image url="@../images/Admin-Dashboard.png" />
          </image>
       </ImageView>
-      <TextField layoutX="195.0" layoutY="28.0" onAction="#searchOnAction" prefHeight="40.0" prefWidth="317.0" promptText="Search ..." style="-fx-background-radius: 15;">
+      <TextField fx:id="txtSearch" layoutX="195.0" layoutY="28.0" onAction="#searchOnAction" prefHeight="40.0" prefWidth="317.0" promptText="Search ..." style="-fx-background-radius: 15;">
          <effect>
             <DropShadow height="12.1" offsetX="1.0" radius="5.55" spread="0.03" width="12.1">
                <color>

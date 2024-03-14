@@ -12,6 +12,7 @@ import lk.ijse.bo.custom.BorrowedBookBO;
 import lk.ijse.bo.custom.UserBO;
 import lk.ijse.dto.BookDto;
 import lk.ijse.dto.BorrowedDetailsDto;
+import lk.ijse.dto.tm.BookTm;
 import lk.ijse.dto.tm.BorrowedDetailsTm;
 import lk.ijse.embedded.BorrowedDetailPK;
 import lk.ijse.entity.Book;
@@ -22,7 +23,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class BorrowedBookTableController {
+public class OverDueBooksController {
 
     @FXML
     private TableColumn<?, ?> colAction;
@@ -62,10 +63,8 @@ public class BorrowedBookTableController {
     }
 
     private void loadAllBooks() {
-        System.out.println(userName);
-
         try {
-            List<BorrowedDetailsDto> dtoList = borrowedBookBO.getAllBorrowedFromUser(userName);
+            List<BorrowedDetailsDto> dtoList = borrowedBookBO.getOverdueBorrowedDetails();
 
             ObservableList<BorrowedDetailsTm> obList = FXCollections.observableArrayList();
 
@@ -87,6 +86,8 @@ public class BorrowedBookTableController {
 
                         String bookId = bookBO.getId(title);
 
+                        userName = borrowedBookBO.getUserNameFromBorrowed(bookId);
+
                         returnBook(bookId);
 
                         obList.remove(index);
@@ -100,8 +101,6 @@ public class BorrowedBookTableController {
                 userName = borrowedBookBO.getUserNameFromBorrowed(dto.getBorrowedDetailPK().getId());
 
                 var tm = new BorrowedDetailsTm(dto.getBorrowedDetailPK(), dto.getBorrowedDate(), dto.getDueDate(), title, userName, btn);
-
-                System.out.println(tm);
 
                 obList.add(tm);
 

@@ -1,7 +1,9 @@
 package lk.ijse.bo.custom;
 
 import lk.ijse.bo.SuperBO;
+import lk.ijse.dto.BookDto;
 import lk.ijse.dto.BorrowedDetailsDto;
+import lk.ijse.entity.Book;
 import lk.ijse.entity.BorrowedDetails;
 
 import java.util.List;
@@ -20,4 +22,10 @@ public interface BorrowedBookBO extends SuperBO {
     String getUserNameFromBorrowed(String bookId);
 
     boolean checkReturnDate(String bookId);
+
+    List<BorrowedDetailsDto> getOverdueBorrowedDetails();
+
+    List<Object[]> getUserAndBookTitle();
+
+    boolean checkNumberOfBooks(String userName);
 }

@@ -181,4 +181,5 @@ public class BookRepositoryImpl implements BookRepository {
         query.setMaxResults(count); // Limit to count results
         return query.getResultList();
     }
+
 }

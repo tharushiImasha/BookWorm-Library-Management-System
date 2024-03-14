@@ -1,5 +1,8 @@
 package lk.ijse.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,16 +10,17 @@ import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Duration;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BranchBO;
 import lk.ijse.bo.custom.UserBO;
 import lk.ijse.dto.BranchDto;
 import lk.ijse.dto.UserDto;
 import lk.ijse.dto.tm.BranchTm;
-import lk.ijse.entity.User;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class BranchController {
 
@@ -173,24 +177,75 @@ public class BranchController {
         txtLocation.clear();
     }
 
+    private boolean validateBranches() {
+        String id = txtId.getText();
+        boolean isValid = Pattern.matches("[Br][0-9]{1,}", id);
+
+        if (!isValid){
+
+            if (txtId.getText().isEmpty()){
+                flashBorder(txtId);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
+                return false;
+            }
+        }
+
+        String location = txtLocation.getText();
+        boolean isValidName = Pattern.matches("([a-zA-Z\\s]+)", location);
+
+        if (!isValidName){
+
+            if (txtLocation.getText().isEmpty()){
+                flashBorder(txtLocation);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Invalid Location").show();
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void flashBorder(TextField textField) {
+        textField.setStyle("-fx-border-color: #000000;-fx-background-color: rgba(224,68,68,0.13)");
+        setBorderResetAnimation(textField);
+    }
+
+    private void setBorderResetAnimation(TextField textField) {
+
+        Timeline timeline1 = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.1), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.2), new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.3), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.4), new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10"))
+        );
+        timeline1.play();
+    }
+
     @FXML
     void btnSaveOnAction(ActionEvent event) {
         String branchId = txtId.getText();
         String location = txtLocation.getText();
         String userName = cmbUserName.getValue();
 
-        User user = userBO.searchUser(userName);
-
         var dto = new BranchDto(branchId, location, userName);
 
         try {
 
-            boolean isSaved = branchBO.saveBranch(dto);
+            if (validateBranches()) {
 
-            if (isSaved){
-                new Alert(Alert.AlertType.CONFIRMATION, "Branch saved!").show();
-            } else {
-                new Alert(Alert.AlertType.CONFIRMATION, "Branch not saved!").show();
+                boolean isSaved = branchBO.saveBranch(dto);
+
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Branch saved!").show();
+                } else {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Branch not saved!").show();
+                }
             }
 
         } catch (Exception e) {

@@ -3,6 +3,7 @@ package lk.ijse.bo.custom;
 import lk.ijse.bo.SuperBO;
 import lk.ijse.dto.BookDto;
 import lk.ijse.entity.Book;
+import org.hibernate.Session;
 
 import java.util.List;
 

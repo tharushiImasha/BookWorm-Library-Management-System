@@ -9,7 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -17,7 +19,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import lk.ijse.bo.BOFactory;
+import lk.ijse.bo.custom.BookBO;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -53,7 +58,7 @@ public class AdminDashboardPaneController {
     private Text lblName;
 
     @FXML
-    private Circle profile;
+    private TextField txtSearch;
 
     @FXML
     private Rectangle rectBooks;
@@ -78,6 +83,8 @@ public class AdminDashboardPaneController {
 
     @FXML
     private ImageView usersOn;
+
+    BookBO bookBO = (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.BOOK);
 
     public void initialize() throws IOException {
         lblName.setText(LoginController.name + " !");
@@ -181,8 +188,26 @@ public class AdminDashboardPaneController {
     }
 
     @FXML
-    void searchOnAction(ActionEvent event) {
+    void searchOnAction(ActionEvent event) throws IOException {
+        String id = bookBO.getId(txtSearch.getText());
 
+        UserDashboardController.id = id;
+
+        if(id != null){
+
+            Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_details.fxml"));
+
+            Scene scene = new Scene(rootNode);
+            Stage stage = new Stage();
+
+            stage.setTitle("Book");
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.centerOnScreen();
+            stage.show();
+        }else {
+            new Alert(Alert.AlertType.CONFIRMATION, "This book is not in the library").show();
+        }
     }
 
 }

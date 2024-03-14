@@ -1,5 +1,8 @@
 package lk.ijse.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,18 +18,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BookBO;
 import lk.ijse.bo.custom.BranchBO;
 import lk.ijse.dto.BookDto;
 import lk.ijse.dto.BranchDto;
-import lk.ijse.dto.UserDto;
 import lk.ijse.dto.tm.BookTm;
-import lk.ijse.entity.Book;
 
 import java.io.*;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class BooksController {
 
@@ -160,9 +163,6 @@ public class BooksController {
 
                 var tm = new BookTm(dto.getId(), dto.getTitle(), dto.getAuthor(),dto.getDesc(), dto.getGenre(), dto.getBranchId(), dto.getStatus(), dto.getImage(), btn);
 
-                System.out.println(dto.getId());
-                System.out.println(dto.getGenre());
-
                 obList.add(tm);
 
             }
@@ -205,6 +205,70 @@ public class BooksController {
         } else {
             imgBook.setImage(null);
         }
+    }
+
+    private boolean validateBooks() {
+        String id = txtId.getText();
+        boolean isValid = Pattern.matches("[B][0-9]{1,}", id);
+
+        if (!isValid){
+
+            if (txtId.getText().isEmpty()){
+                flashBorder(txtId);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
+                return false;
+            }
+        }
+
+        String title = txtTitle.getText();
+        boolean isValidName = Pattern.matches("([a-zA-Z\\s]+)", title);
+
+        if (!isValidName){
+
+            if (txtTitle.getText().isEmpty()){
+                flashBorder(txtTitle);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Invalid Title").show();
+                return false;
+            }
+        }
+
+        String author = txtAuthor.getText();
+        boolean isValidAuthor = Pattern.matches("([a-zA-Z\\s]+)", author);
+
+        if (!isValidAuthor){
+
+            if (txtAuthor.getText().isEmpty()){
+                flashBorder(txtAuthor);
+                return false;
+            }else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Invalid Author Name").show();
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void flashBorder(TextField textField) {
+        textField.setStyle("-fx-border-color: #000000;-fx-background-color: rgba(224,68,68,0.13)");
+        setBorderResetAnimation(textField);
+    }
+
+    private void setBorderResetAnimation(TextField textField) {
+
+        Timeline timeline1 = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.1), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.2), new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.3), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.4), new KeyValue(textField.styleProperty(), "-fx-background-color:rgba(255,0,0,0.13);-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10")),
+                new KeyFrame(Duration.seconds(0.5), new KeyValue(textField.styleProperty(), "-fx-background-color: white;-fx-border-color: rgba(128,128,128,0.38);-fx-background-radius:10;-fx-border-radius:10"))
+        );
+        timeline1.play();
     }
 
     private void deleteBooks(String id) {
@@ -258,12 +322,15 @@ public class BooksController {
 
         try {
 
-            boolean isSaved = bookBO.saveBook(dto);
+            if (validateBooks()) {
 
-            if (isSaved){
-                new Alert(Alert.AlertType.CONFIRMATION, "Book saved!").show();
-            } else {
-                new Alert(Alert.AlertType.CONFIRMATION, "Book not saved!").show();
+                boolean isSaved = bookBO.saveBook(dto);
+
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Book saved!").show();
+                } else {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Book not saved!").show();
+                }
             }
 
         } catch (Exception e) {
@@ -312,6 +379,20 @@ public class BooksController {
         stage.centerOnScreen();
         stage.show();
     }
+
+    @FXML
+    void overDueBooksOnAction(ActionEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/over_due_books.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+    }
+
 
     @FXML
     void imgOnAction(MouseEvent event) {

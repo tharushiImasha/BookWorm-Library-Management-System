@@ -3,12 +3,12 @@ package lk.ijse.repository.custom.impl;
 import lk.ijse.dto.BorrowedDetailsDto;
 import lk.ijse.embedded.BorrowedDetailPK;
 import lk.ijse.entity.BorrowedDetails;
-import lk.ijse.entity.User;
 import lk.ijse.repository.custom.BorrowedBookRepository;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
@@ -111,6 +111,8 @@ public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
                 .setParameter("bookId", bookId)
                 .getSingleResult();
 
+        System.out.println("why null "+userName);
+
         session.close();
 
         return userName;
@@ -137,5 +139,31 @@ public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
 
         return isNull;
 
+    }
+
+    @Override
+    public List<BorrowedDetails> getOverdueBorrowedDetails() {
+        Date currentDate = new Date();
+
+        String hql = "SELECT bd FROM BorrowedDetails bd " +
+                "JOIN bd.book " +
+                "WHERE bd.returnDate IS NULL AND bd.dueDate < :currentDate";
+
+        Query<BorrowedDetails> query = session.createQuery(hql, BorrowedDetails.class);
+        query.setParameter("currentDate", currentDate);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Object[]> getUserAndBookTitle() {
+        Date currentDate = new Date();
+
+        String hql = "SELECT u.username, b.title FROM User u " +
+                "JOIN u.borrowedDetails bd " +
+                "JOIN bd.book b " +
+                "WHERE bd.returnDate IS NULL AND bd.dueDate < :currentDate";
+        Query<Object[]> query = session.createQuery(hql);
+        query.setParameter("currentDate", currentDate);
+        return query.getResultList();
     }
 }

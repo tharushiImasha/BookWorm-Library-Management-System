@@ -108,28 +108,40 @@ public class BookDetailsController {
 
         BorrowedDetailPK borrowedDetailPK = new BorrowedDetailPK(id, userName);
 
-        if (bookBO.getStatus(id).equals("Available")){
+        if (lessTwo(userName)) {
 
-            Book book = bookBO.searchBook(id);
 
-            boolean isUpdated = bookBO.updateBook(new BookDto(id, book.getTitle(), book.getAuthor(), book.getDesc(), book.getGenre(), book.getBranch().getId(), book.getImage(), "Not Available"));
+            if (bookBO.getStatus(id).equals("Available")) {
 
-            if (isUpdated){
-                boolean isSaved = borrowedBookBO.saveBorrowedDetail(new BorrowedDetailsDto(borrowedDetailPK, borrowingDateTime, dueDateTime, null));
+                Book book = bookBO.searchBook(id);
 
-                if (isSaved){
-                    new Alert(Alert.AlertType.CONFIRMATION, "Book Borrowed Successfully !").show();
+                boolean isUpdated = bookBO.updateBook(new BookDto(id, book.getTitle(), book.getAuthor(), book.getDesc(), book.getGenre(), book.getBranch().getId(), book.getImage(), "Not Available"));
 
-                    available.setVisible(false);
-                    notAvailble.setVisible(true);
+                if (isUpdated) {
+                    boolean isSaved = borrowedBookBO.saveBorrowedDetail(new BorrowedDetailsDto(borrowedDetailPK, borrowingDateTime, dueDateTime, null));
+
+                    if (isSaved) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Book Borrowed Successfully !").show();
+
+                        available.setVisible(false);
+                        notAvailble.setVisible(true);
+                    }
+
                 }
 
+            } else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Book Not Available").show();
             }
 
         }else {
-            new Alert(Alert.AlertType.CONFIRMATION, "Book Not Available").show();
+            new Alert(Alert.AlertType.CONFIRMATION, "You already borrowed 2 books. First return them").show();
         }
 
+    }
+
+    private boolean lessTwo(String userName) {
+        boolean lessTwo = borrowedBookBO.checkNumberOfBooks(userName);
+        return lessTwo;
     }
 
 }

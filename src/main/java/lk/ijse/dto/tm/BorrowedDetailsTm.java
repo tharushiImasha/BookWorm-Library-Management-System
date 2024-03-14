@@ -23,6 +23,8 @@ public class BorrowedDetailsTm {
 
     private String returned;
 
+    private String name;
+
     private Button btn;
 
     public BorrowedDetailsTm(BorrowedDetailPK borrowedDetailPK, Timestamp borrowedDate, Timestamp dueDate, String title, String returned) {
@@ -33,11 +35,12 @@ public class BorrowedDetailsTm {
         this.returned = returned;
     }
 
-    public BorrowedDetailsTm(BorrowedDetailPK borrowedDetailPK, Timestamp borrowedDate, Timestamp dueDate, String title, Button btn) {
+    public BorrowedDetailsTm(BorrowedDetailPK borrowedDetailPK, Timestamp borrowedDate, Timestamp dueDate, String title, String name, Button btn) {
         this.borrowedDetailPK = borrowedDetailPK;
         this.borrowedDate = borrowedDate;
         this.dueDate = dueDate;
         this.title = title;
+        this.name = name;
         this.btn = btn;
     }
 }

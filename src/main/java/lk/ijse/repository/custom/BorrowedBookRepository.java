@@ -1,6 +1,7 @@
 package lk.ijse.repository.custom;
 
 import lk.ijse.dto.BorrowedDetailsDto;
+import lk.ijse.entity.Book;
 import lk.ijse.entity.BorrowedDetails;
 import lk.ijse.repository.CrudRepository;
 
@@ -14,4 +15,8 @@ public interface BorrowedBookRepository extends CrudRepository<BorrowedDetails> 
     String getUserNameFromBorrowed(String bookId);
 
     boolean checkReturnDate(String bookId);
+
+    List<BorrowedDetails> getOverdueBorrowedDetails();
+
+    List<Object[]> getUserAndBookTitle();
 }

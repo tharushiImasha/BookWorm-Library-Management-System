@@ -83,6 +83,12 @@ public class AdminDashboardPaneController {
         lblName.setText(LoginController.name + " !");
         generateTime();
 
+        booksOn.setVisible(false);
+        usersOn.setVisible(false);
+        branchesOn.setVisible(false);
+        dashboardOn.setVisible(true);
+        dashboardOff.setVisible(true);
+
         childNode.getChildren().clear();
         childNode.getChildren().add(FXMLLoader.load(childNode.getClass().getResource("/view/admin_dashboard.fxml")));
     }
@@ -102,18 +108,38 @@ public class AdminDashboardPaneController {
     }
 
     @FXML
-    void ProfileOnAction(MouseEvent event) {
+    void ReturnBooksOnAction(MouseEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/borrowedBookTable.fxml"));
 
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 
     @FXML
     void rectBooksOnAction(MouseEvent event) throws IOException {
+        booksOn.setVisible(true);
+        usersOn.setVisible(false);
+        branchesOn.setVisible(false);
+        dashboardOn.setVisible(false);
+        booksOff.setVisible(true);
+
         childNode.getChildren().clear();
         childNode.getChildren().add(FXMLLoader.load(childNode.getClass().getResource("/view/books.fxml")));
     }
 
     @FXML
     void rectBranchesOnAction(MouseEvent event) throws IOException {
+        booksOn.setVisible(false);
+        usersOn.setVisible(false);
+        branchesOn.setVisible(true);
+        dashboardOn.setVisible(false);
+        branchesOff.setVisible(true);
+
         childNode.getChildren().clear();
         childNode.getChildren().add(FXMLLoader.load(childNode.getClass().getResource("/view/branch.fxml")));
     }
@@ -132,12 +158,24 @@ public class AdminDashboardPaneController {
 
     @FXML
     void rectUsersOnAction(MouseEvent event) throws IOException {
+        booksOn.setVisible(false);
+        usersOn.setVisible(true);
+        branchesOn.setVisible(false);
+        dashboardOn.setVisible(false);
+        usersOff.setVisible(true);
+
         childNode.getChildren().clear();
         childNode.getChildren().add(FXMLLoader.load(childNode.getClass().getResource("/view/users.fxml")));
     }
 
     @FXML
     void rectdashboardOnAction(MouseEvent event) throws IOException {
+        booksOn.setVisible(false);
+        usersOn.setVisible(false);
+        branchesOn.setVisible(false);
+        dashboardOn.setVisible(true);
+        dashboardOff.setVisible(true);
+
         childNode.getChildren().clear();
         childNode.getChildren().add(FXMLLoader.load(childNode.getClass().getResource("/view/admin_dashboard.fxml")));
     }

@@ -1,5 +1,6 @@
 package lk.ijse.repository.custom.impl;
 
+import jakarta.persistence.TypedQuery;
 import lk.ijse.entity.Book;
 import lk.ijse.repository.custom.BookRepository;
 import org.hibernate.Session;
@@ -84,51 +85,7 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     @Override
-    public List<Book> getFictions() {
-        String type = "Fiction";
-
-        String sql = "SELECT b FROM Book AS b WHERE genre = :type";
-        Query query = session.createQuery(sql).setParameter("type", type);
-
-        List list = query.list();
-
-        session.close();
-
-        return list;
-    }
-
-    @Override
-    public List<Book> getFantasy() {
-        String type = "Fantasy";
-
-        String sql = "SELECT b FROM Book AS b WHERE genre = :type";
-        Query query = session.createQuery(sql).setParameter("type", type);
-
-        List list = query.list();
-
-        session.close();
-
-        return list;
-    }
-
-    @Override
-    public List<Book> getChildrens() {
-        String type = "Children's";
-
-        String sql = "SELECT b FROM Book AS b WHERE genre = :type";
-        Query query = session.createQuery(sql).setParameter("type", type);
-
-        List list = query.list();
-
-        session.close();
-
-        return list;
-    }
-
-    @Override
-    public List<Book> getHorror() {
-        String type = "Horror";
-
+    public List<Book> getBooksFromType(String type) {
         String sql = "SELECT b FROM Book AS b WHERE genre = :type";
         Query query = session.createQuery(sql).setParameter("type", type);
 
@@ -205,10 +162,23 @@ public class BookRepositoryImpl implements BookRepository {
         String sql = "SELECT id FROM Book WHERE title = :title";
         Query query = session.createQuery(sql).setParameter("title", title);
 
-        String status = (String) query.list().get(0);
+        List<String> resultList = query.list();
 
+        if (resultList.isEmpty()) {
+            session.close();
+            return null; // Return null if no matching title is found
+        }
+
+        String status = resultList.get(0);
         session.close();
-
         return status;
+    }
+
+    @Override
+    public List<Book> getRecentlyAddedBooks(int count) {
+        TypedQuery<Book> query = session.createQuery(
+                "SELECT b FROM Book b ORDER BY b.id DESC", Book.class);
+        query.setMaxResults(count); // Limit to count results
+        return query.getResultList();
     }
 }

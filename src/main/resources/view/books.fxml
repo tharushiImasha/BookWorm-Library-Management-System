@@ -70,14 +70,15 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <TableView fx:id="tblAllBooks" layoutX="44.0" layoutY="435.0" prefHeight="244.0" prefWidth="999.0">
+      <TableView fx:id="tblAllBooks" layoutX="44.0" layoutY="435.0" prefHeight="244.0" prefWidth="1001.0">
         <columns>
             <TableColumn fx:id="colBookId" prefWidth="95.0" text="Book ID" />
-          <TableColumn fx:id="colTitle" prefWidth="210.0" text="Title" />
-          <TableColumn fx:id="colAuthor" prefWidth="197.0" text="Author" />
-            <TableColumn fx:id="colGenre" minWidth="0.0" prefWidth="188.0" text="Genre" />
-            <TableColumn fx:id="colStatus" prefWidth="173.0" text="Status" />
-            <TableColumn fx:id="colAction" minWidth="0.0" prefWidth="135.0" text="Action" />
+          <TableColumn fx:id="colTitle" prefWidth="176.0" text="Title" />
+          <TableColumn fx:id="colAuthor" prefWidth="185.0" text="Author" />
+            <TableColumn fx:id="colGenre" minWidth="0.0" prefWidth="153.0" text="Genre" />
+            <TableColumn fx:id="colBranchId" prefWidth="107.0" text="Branch ID" />
+            <TableColumn fx:id="colStatus" prefWidth="134.0" text="Status" />
+            <TableColumn fx:id="colAction" minWidth="0.0" prefWidth="150.0" text="Action" />
         </columns>
       </TableView>
       <ImageView fitHeight="244.0" fitWidth="233.0" layoutX="838.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">

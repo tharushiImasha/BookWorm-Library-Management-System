@@ -27,4 +27,15 @@ public class BookTm {
     private byte[] image;
 
     private Button btn;
+
+    public BookTm(String id, String title, String author, String desc, String genre, String branchId, String status, byte[] image) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.desc = desc;
+        this.genre = genre;
+        this.branchId = branchId;
+        this.status = status;
+        this.image = image;
+    }
 }

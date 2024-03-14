@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="932.0" prefWidth="1311.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserDashboardController">
+<AnchorPane prefHeight="932.0" prefWidth="1311.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserDashboardController">
    <children>
       <ImageView fitHeight="932.0" fitWidth="1311.0">
          <image>
             <Image url="@../images/User-Dashboard.png" />
          </image>
       </ImageView>
-      <TextField layoutX="191.0" layoutY="32.0" onAction="#searchOnAction" prefHeight="40.0" prefWidth="317.0" promptText="Search ..." style="-fx-background-radius: 15;">
+      <TextField fx:id="txtSearch" layoutX="191.0" layoutY="32.0" onAction="#searchOnAction" prefHeight="40.0" prefWidth="317.0" promptText="Search ..." style="-fx-background-radius: 15;">
          <effect>
             <DropShadow height="12.1" offsetX="1.0" radius="5.55" spread="0.03" width="12.1">
                <color>
@@ -73,7 +78,7 @@
             <Font name="System Bold" size="33.0" />
          </font>
       </Text>
-      <ComboBox layoutX="1066.0" layoutY="143.0" onAction="#genreOnAction" prefHeight="30.0" prefWidth="188.0" promptText="Genre" style="-fx-background-radius: 10;">
+      <ComboBox fx:id="cmbGenre" layoutX="1066.0" layoutY="143.0" onAction="#genreOnAction" prefHeight="30.0" prefWidth="188.0" promptText="Genre" style="-fx-background-radius: 10;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -131,5 +136,15 @@
       <ImageView fx:id="imgB2" fitHeight="268.0" fitWidth="200.0" layoutX="436.0" layoutY="222.0" onMouseClicked="#imgB2inAction" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="imgB3" fitHeight="268.0" fitWidth="200.0" layoutX="684.0" layoutY="222.0" onMouseClicked="#imgB3inAction" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="imgB4" fitHeight="268.0" fitWidth="200.0" layoutX="932.0" layoutY="222.0" onMouseClicked="#imgB4inAction" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="38.0" fitWidth="35.0" layoutX="638.0" layoutY="563.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/more.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" layoutX="632.0" layoutY="556.0" onMouseClicked="#moreBookOnAction" opacity="0.0" stroke="TRANSPARENT" strokeType="INSIDE" width="48.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Rectangle>
    </children>
 </AnchorPane>

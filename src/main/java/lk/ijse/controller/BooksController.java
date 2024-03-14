@@ -58,6 +58,9 @@ public class BooksController {
     private TableColumn<?, ?> colTitle;
 
     @FXML
+    private TableColumn<?, ?> colBranchId;
+
+    @FXML
     private ImageView imgBook;
 
     @FXML
@@ -123,6 +126,7 @@ public class BooksController {
         colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        colBranchId.setCellValueFactory(new PropertyValueFactory<>("branchId"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
     }
 
@@ -180,7 +184,7 @@ public class BooksController {
                             newValue.getDesc(),
                             newValue.getGenre(),
                             newValue.getBranchId(),
-                            newValue.getImage(),
+                            //newValue.getImage(),
                             newValue.getStatus()
                     );
                     setFields(dto);
@@ -233,9 +237,10 @@ public class BooksController {
     @FXML
     void btnClearOnAction(ActionEvent event) {
         txtAuthor.clear();
-        txtCount.clear();
         txtTitle.clear();
         txtDesc.clear();
+        txtId.clear();
+        txtPhoto.clear();
     }
 
     @FXML
@@ -295,28 +300,6 @@ public class BooksController {
         }
     }
 
-//    @FXML
-//    void btnSelectedOnAction(ActionEvent event) {
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
-//        List<File> files = fileChooser.showOpenMultipleDialog(null);
-//
-//        for (File file : files){
-//            try {
-//                byte[] bytes = convertFileToBytes(file);
-//
-//                imageBytes = bytes;
-//
-//                Image image = convertBytesToImage(bytes);
-//
-//                imgBook.setImage(image);
-//
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-//    }
-
     @FXML
     void borrowedBooksOnAction(ActionEvent event) throws IOException {
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/borrowedBookTable.fxml"));
@@ -326,7 +309,6 @@ public class BooksController {
 
         stage.setTitle("Book");
         stage.setScene(scene);
-        //stage.initStyle(StageStyle.UNDECORATED);
         stage.centerOnScreen();
         stage.show();
     }
@@ -334,7 +316,7 @@ public class BooksController {
     @FXML
     void imgOnAction(MouseEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
         List<File> files = fileChooser.showOpenMultipleDialog(null);
 
         for (File file : files){

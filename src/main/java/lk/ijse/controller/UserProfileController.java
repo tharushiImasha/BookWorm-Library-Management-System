@@ -1,6 +1,5 @@
 package lk.ijse.controller;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BookBO;
 import lk.ijse.bo.custom.BorrowedBookBO;
@@ -20,6 +18,7 @@ import lk.ijse.bo.custom.UserBO;
 import lk.ijse.dto.BorrowedDetailsDto;
 import lk.ijse.dto.UserDto;
 import lk.ijse.dto.tm.BorrowedDetailsTm;
+import lk.ijse.entity.User;
 
 import java.io.IOException;
 import java.util.List;
@@ -69,31 +68,25 @@ public class UserProfileController {
     public void initialize() {
         userName = userBO.getUserName(LoginController.name);
 
-        boolean isNull = borrowedBookBO.checkReturnDate(bookId);
-        if (isNull){
-            returned = "Not";
-        }else {
-            returned = "Returned";
-        }
-
-        setCellValueFactory();
         loadAllBooks();
-        checkReturned();
+        setCellValueFactory();
+        getUserDetails();
+    }
+
+    private void getUserDetails() {
+        User user = userBO.searchUser(userName);
+
+        txtName.setText(user.getFullName());
+        txtPassword.setText(user.getPassword());
+        txtEmail.setText(user.getEmail());
+        txtUserName.setText(user.getUserName());
     }
 
     private void setCellValueFactory() {
         colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         colBorrowedDate.setCellValueFactory(new PropertyValueFactory<>("borrowedDate"));
         colDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-
-        if (returned.equals("Not")){
-            System.out.println(returned);
-
-            String status = "Not";
-            colReturn.setCellValueFactory(new PropertyValueFactory<>(status));
-        }
-
-
+        colReturn.setCellValueFactory(new PropertyValueFactory<>("returned"));
     }
 
     private void loadAllBooks() {
@@ -109,8 +102,6 @@ public class UserProfileController {
                 boolean isNull = borrowedBookBO.checkReturnDate(bookId);
                 returned = isNull ? "Not" : "Returned";
 
-                System.out.println("return    "+returned);
-
                 String title = bookBO.getTitle(dto.getBorrowedDetailPK().getId());
 
                 var tm = new BorrowedDetailsTm(dto.getBorrowedDetailPK(), dto.getBorrowedDate(), dto.getDueDate(), title, returned);
@@ -123,15 +114,6 @@ public class UserProfileController {
 
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    private void checkReturned() {
-        boolean isNull = borrowedBookBO.checkReturnDate(bookId);
-        if (isNull){
-            returned = "Not";
-        }else {
-            returned = "Returned";
         }
     }
 

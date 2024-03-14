@@ -55,7 +55,7 @@
           <TableColumn fx:id="colTitle" prefWidth="222.0" text="Book Title" />
           <TableColumn fx:id="colBorrowedDate" prefWidth="241.0" text="Borrowed Date" />
             <TableColumn fx:id="colDueDate" prefWidth="239.0" text="Due Date" />
-            <TableColumn fx:id="colFReturn" prefWidth="155.0" text="Rerurn Status" />
+            <TableColumn fx:id="colReturn" prefWidth="155.0" text="Return Status" />
         </columns>
       </TableView>
       <ImageView fitHeight="192.0" fitWidth="192.0" layoutX="693.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">

@@ -153,98 +153,6 @@ public class BookBOImpl implements BookBO {
     }
 
     @Override
-    public List<BookDto> getFictions() {
-        session = SessionFactoryConfig.getInstance().getSession();
-
-        try {
-            bookRepository.setSession(session);
-            List<Book> all = bookRepository.getFictions();
-            List<BookDto> bookDtoList = new ArrayList<>();
-
-            for (Book book : all){
-                bookDtoList.add(book.toDto());
-            }
-
-            session.close();
-            return bookDtoList;
-
-        } catch (Exception e) {
-            session.close();
-            e.printStackTrace();
-            throw e;
-        }
-    }
-
-    @Override
-    public List<BookDto> getFantasy() {
-        session = SessionFactoryConfig.getInstance().getSession();
-
-        try {
-            bookRepository.setSession(session);
-            List<Book> all = bookRepository.getFantasy();
-            List<BookDto> bookDtoList = new ArrayList<>();
-
-            for (Book book : all){
-                bookDtoList.add(book.toDto());
-            }
-
-            session.close();
-            return bookDtoList;
-
-        } catch (Exception e) {
-            session.close();
-            e.printStackTrace();
-            throw e;
-        }
-    }
-
-    @Override
-    public List<BookDto> getChildrens() {
-        session = SessionFactoryConfig.getInstance().getSession();
-
-        try {
-            bookRepository.setSession(session);
-            List<Book> all = bookRepository.getChildrens();
-            List<BookDto> bookDtoList = new ArrayList<>();
-
-            for (Book book : all){
-                bookDtoList.add(book.toDto());
-            }
-
-            session.close();
-            return bookDtoList;
-
-        } catch (Exception e) {
-            session.close();
-            e.printStackTrace();
-            throw e;
-        }
-    }
-
-    @Override
-    public List<BookDto> getHorror() {
-        session = SessionFactoryConfig.getInstance().getSession();
-
-        try {
-            bookRepository.setSession(session);
-            List<Book> all = bookRepository.getHorror();
-            List<BookDto> bookDtoList = new ArrayList<>();
-
-            for (Book book : all){
-                bookDtoList.add(book.toDto());
-            }
-
-            session.close();
-            return bookDtoList;
-
-        } catch (Exception e) {
-            session.close();
-            e.printStackTrace();
-            throw e;
-        }
-    }
-
-    @Override
     public byte[] getBookImg(String id) {
         session = SessionFactoryConfig.getInstance().getSession();
 
@@ -350,6 +258,52 @@ public class BookBOImpl implements BookBO {
             session.close();
 
             return id;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public List<BookDto> getBooksFromType(String type) {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            bookRepository.setSession(session);
+            List<Book> all = bookRepository.getBooksFromType(type);
+            List<BookDto> bookDtoList = new ArrayList<>();
+
+            for (Book book : all){
+                bookDtoList.add(book.toDto());
+            }
+
+            session.close();
+            return bookDtoList;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public List<BookDto> getRecentlyAddedBooks(int count) {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            bookRepository.setSession(session);
+            List<Book> all = bookRepository.getRecentlyAddedBooks(count);
+            List<BookDto> bookDtoList = new ArrayList<>();
+
+            for (Book book : all){
+                bookDtoList.add(book.toDto());
+            }
+
+            session.close();
+            return bookDtoList;
 
         } catch (Exception e) {
             session.close();

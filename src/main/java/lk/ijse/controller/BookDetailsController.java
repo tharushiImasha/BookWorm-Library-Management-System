@@ -118,6 +118,8 @@ public class BookDetailsController {
                 boolean isSaved = borrowedBookBO.saveBorrowedDetail(new BorrowedDetailsDto(borrowedDetailPK, borrowingDateTime, dueDateTime, null));
 
                 if (isSaved){
+                    new Alert(Alert.AlertType.CONFIRMATION, "Book Borrowed Successfully !").show();
+
                     available.setVisible(false);
                     notAvailble.setVisible(true);
                 }

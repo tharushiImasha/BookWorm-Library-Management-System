@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="554.0" prefWidth="979.0" style="-fx-background-color: #002B5B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.MoreBooksController">
+   <children>
+      <Label layoutX="55.0" layoutY="33.0" text="All Books" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblAllBooks" layoutX="58.0" layoutY="103.0" prefHeight="398.0" prefWidth="864.0">
+         <columns>
+            <TableColumn fx:id="colBookId" prefWidth="95.0" text="Book ID" />
+            <TableColumn fx:id="colTitle" prefWidth="235.0" text="Title" />
+            <TableColumn fx:id="colAuthor" prefWidth="154.0" text="Author" />
+            <TableColumn fx:id="colGenre" minWidth="0.0" prefWidth="206.0" text="Genre" />
+            <TableColumn fx:id="colStatus" prefWidth="173.0" text="Status" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

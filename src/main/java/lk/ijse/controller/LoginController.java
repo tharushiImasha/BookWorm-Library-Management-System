@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -30,6 +31,9 @@ public class LoginController {
     @FXML
     private TextField txtpassword;
 
+    @FXML
+    private PasswordField txtHidePw;
+
     public static String name;
 
     UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.USER);
@@ -38,6 +42,7 @@ public class LoginController {
     void btnLoginOnAction(ActionEvent event) throws IOException {
         String userName = txtUserName.getText();
         String pw = txtpassword.getText();
+        String hidePw = txtHidePw.getText();
 
         String password = userBO.getPw(userName);
 
@@ -45,7 +50,7 @@ public class LoginController {
 
         String role = userBO.getRole(userName);
 
-        if (password.equals(pw)){
+        if (password.equals(pw)||password.equals(hidePw)){
 
             if (role.equals("Admin")){
                 Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/admin_dashboard_pane.fxml"));
@@ -82,6 +87,25 @@ public class LoginController {
         stage.setTitle("Signup Page");
         stage.setScene(scene);
         stage.centerOnScreen();
+    }
+
+    String passwordNew = "";
+
+    @FXML
+    void showPwOnAction(ActionEvent event) {
+        if (chkPw.isSelected()){
+            passwordNew = txtHidePw.getText();
+            txtpassword.setText(passwordNew);
+
+            txtHidePw.setVisible(false);
+            txtpassword.setVisible(true);
+        } else {
+            passwordNew = txtpassword.getText();
+            txtHidePw.setText(passwordNew);
+
+            txtpassword.setVisible(false);
+            txtHidePw.setVisible(true);
+        }
     }
 
 }

@@ -9,7 +9,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -84,6 +87,12 @@ public class UserDashboardController {
     private Text lblName;
 
     @FXML
+    private TextField txtSearch;
+
+    @FXML
+    private ComboBox<String> cmbGenre;
+
+    @FXML
     private Rectangle popularRect;
 
     @FXML
@@ -94,6 +103,8 @@ public class UserDashboardController {
 
     static String id;
 
+    public static String genreForBook;
+
     BookBO bookBO = (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.BOOK);
 
     public void initialize(){
@@ -102,6 +113,14 @@ public class UserDashboardController {
         setBook();
         setTitle();
         setAuthor();
+        loadGenre();
+    }
+
+    private void loadGenre() {
+        cmbGenre.getItems().add("Horror");
+        cmbGenre.getItems().add("Fantasy");
+        cmbGenre.getItems().add("Children's");
+        cmbGenre.getItems().add("Fiction");
     }
 
     private void setAuthor() {
@@ -165,28 +184,78 @@ public class UserDashboardController {
     }
 
     @FXML
-    void childrenRectOnAction(MouseEvent event) {
+    void childrenRectOnAction(MouseEvent event) throws IOException {
+        genreForBook = "Children's";
 
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_from_genre.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 
     @FXML
-    void fantacyRectOnAction(MouseEvent event) {
+    void fantacyRectOnAction(MouseEvent event) throws IOException {
+        genreForBook = "Fantasy";
 
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_from_genre.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 
     @FXML
-    void fictionRectOnAction(MouseEvent event) {
+    void fictionRectOnAction(MouseEvent event) throws IOException {
+        genreForBook = "Fiction";
 
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_from_genre.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 
     @FXML
-    void genreOnAction(ActionEvent event) {
+    void horrorRectOnAction(MouseEvent event) throws IOException {
+        genreForBook = "Horror";
 
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_from_genre.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 
     @FXML
-    void horrorRectOnAction(MouseEvent event) {
+    void genreOnAction(ActionEvent event) throws IOException {
+        genreForBook = cmbGenre.getValue();
 
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_from_genre.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 
     @FXML
@@ -259,13 +328,51 @@ public class UserDashboardController {
     }
 
     @FXML
-    void recentRectOnAction(MouseEvent event) {
+    void recentRectOnAction(MouseEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/recentBooks.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+    }
+
+    @FXML
+    void searchOnAction(ActionEvent event) throws IOException {
+        id = bookBO.getId(txtSearch.getText());
+
+        if(id != null){
+
+            Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_details.fxml"));
+
+            Scene scene = new Scene(rootNode);
+            Stage stage = new Stage();
+
+            stage.setTitle("Book");
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.centerOnScreen();
+            stage.show();
+        }else {
+            new Alert(Alert.AlertType.CONFIRMATION, "This book is not in the library").show();
+        }
 
     }
 
     @FXML
-    void searchOnAction(ActionEvent event) {
+    void moreBookOnAction(MouseEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/moreBooks.fxml"));
 
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 
 }

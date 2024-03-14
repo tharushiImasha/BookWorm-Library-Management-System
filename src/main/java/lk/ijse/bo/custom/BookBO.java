@@ -17,14 +17,6 @@ public interface BookBO extends SuperBO {
 
     List<BookDto> getAllBook();
 
-    List<BookDto> getFictions();
-
-    List<BookDto> getFantasy();
-
-    List<BookDto> getChildrens();
-
-    List<BookDto> getHorror();
-
     byte[] getBookImg(String id);
 
     String getTitle(String id);
@@ -36,4 +28,8 @@ public interface BookBO extends SuperBO {
     String getStatus(String id);
 
     String getId(String title);
+
+    List<BookDto> getBooksFromType(String type);
+
+    List<BookDto> getRecentlyAddedBooks(int count);
 }

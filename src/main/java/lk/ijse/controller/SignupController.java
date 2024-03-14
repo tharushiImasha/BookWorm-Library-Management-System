@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -28,6 +29,9 @@ public class SignupController {
     private TextField txtEmail;
 
     @FXML
+    private PasswordField txtHidePw;
+
+    @FXML
     private TextField txtUserName;
 
     @FXML
@@ -43,8 +47,15 @@ public class SignupController {
         String email = txtEmail.getText();
         String name = txtfullName.getText();
         String userName = txtUserName.getText();
-        String pw = txtpassword.getText();
+        String pw = "";
         String role = "Reader";
+
+        if (chkPw.isSelected()){
+            pw = txtpassword.getText();
+        }else {
+            pw = txtHidePw.getText();
+        }
+
 
         var dto = new UserDto(userName, email, name, pw, role);
 
@@ -73,5 +84,24 @@ public class SignupController {
         stage.setTitle("Signup Page");
         stage.setScene(scene);
         stage.centerOnScreen();
+    }
+
+    String password = "";
+
+    @FXML
+    void showPwOnAction(ActionEvent event) {
+        if (chkPw.isSelected()){
+            password = txtHidePw.getText();
+            txtpassword.setText(password);
+
+            txtHidePw.setVisible(false);
+            txtpassword.setVisible(true);
+        } else {
+            password = txtpassword.getText();
+            txtHidePw.setText(password);
+
+            txtpassword.setVisible(false);
+            txtHidePw.setVisible(true);
+        }
     }
 }

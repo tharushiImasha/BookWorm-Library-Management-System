@@ -4,6 +4,8 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,25 +26,17 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.BookBO;
+import lk.ijse.dto.BookDto;
+import lk.ijse.dto.tm.BookTm;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDashboardController {
-
-    @FXML
-    private Rectangle childrenRect;
-
-    @FXML
-    private Rectangle fantacyRect;
-
-    @FXML
-    private Rectangle fictionRect;
-
-    @FXML
-    private Rectangle horrorRect;
 
     @FXML
     private ImageView imgB1;
@@ -92,22 +86,17 @@ public class UserDashboardController {
     @FXML
     private ComboBox<String> cmbGenre;
 
-    @FXML
-    private Rectangle popularRect;
-
-    @FXML
-    private Circle profile;
-
-    @FXML
-    private Rectangle recentRect;
-
     static String id;
 
     public static String genreForBook;
 
+    private List<String> bookIds = new ArrayList<>();
+
     BookBO bookBO = (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BoTypes.BOOK);
 
     public void initialize(){
+        setBooks();
+
         lblName.setText(LoginController.name + " !");
         generateTime();
         setBook();
@@ -124,33 +113,33 @@ public class UserDashboardController {
     }
 
     private void setAuthor() {
-        lblAuthor1.setText(bookBO.getAuthor("B1"));
-        lblAuthor2.setText(bookBO.getAuthor("B2"));
-        lblAuthor3.setText(bookBO.getAuthor("B3"));
-        lblAuthor4.setText(bookBO.getAuthor("B4"));
+        lblAuthor1.setText(bookBO.getAuthor(bookIds.get(0)));
+        lblAuthor2.setText(bookBO.getAuthor(bookIds.get(1)));
+        lblAuthor3.setText(bookBO.getAuthor(bookIds.get(2)));
+        lblAuthor4.setText(bookBO.getAuthor(bookIds.get(3)));
     }
 
     private void setTitle() {
-        lblB1.setText(bookBO.getTitle("B1"));
-        lblB2.setText(bookBO.getTitle("B2"));
-        lblB3.setText(bookBO.getTitle("B3"));
-        lblB4.setText(bookBO.getTitle("B4"));
+        lblB1.setText(bookBO.getTitle(bookIds.get(0)));
+        lblB2.setText(bookBO.getTitle(bookIds.get(1)));
+        lblB3.setText(bookBO.getTitle(bookIds.get(2)));
+        lblB4.setText(bookBO.getTitle(bookIds.get(3)));
     }
 
     private void setBook() {
-        byte[] bytes1 = bookBO.getBookImg("B1");
+        byte[] bytes1 = bookBO.getBookImg(bookIds.get(0));
         ByteArrayInputStream bis1 = new ByteArrayInputStream(bytes1);
         imgB1.setImage(new Image(bis1));
 
-        byte[] bytes2 = bookBO.getBookImg("B2");
+        byte[] bytes2 = bookBO.getBookImg(bookIds.get(1));
         ByteArrayInputStream bis2 = new ByteArrayInputStream(bytes2);
         imgB2.setImage(new Image(bis2));
 
-        byte[] bytes3 = bookBO.getBookImg("B3");
+        byte[] bytes3 = bookBO.getBookImg(bookIds.get(2));
         ByteArrayInputStream bis3 = new ByteArrayInputStream(bytes3);
         imgB3.setImage(new Image(bis3));
 
-        byte[] bytes4 = bookBO.getBookImg("B4");
+        byte[] bytes4 = bookBO.getBookImg(bookIds.get(3));
         ByteArrayInputStream bis4 = new ByteArrayInputStream(bytes4);
         imgB4.setImage(new Image(bis4));
     }
@@ -260,7 +249,7 @@ public class UserDashboardController {
 
     @FXML
     void imgB1inAction(MouseEvent event) throws IOException {
-        id = "B1";
+        id = bookIds.get(0);
 
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_details.fxml"));
 
@@ -276,7 +265,7 @@ public class UserDashboardController {
 
     @FXML
     void imgB2inAction(MouseEvent event) throws IOException {
-        id = "B2";
+        id = bookIds.get(1);
 
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_details.fxml"));
 
@@ -292,7 +281,7 @@ public class UserDashboardController {
 
     @FXML
     void imgB3inAction(MouseEvent event) throws IOException {
-        id = "B3";
+        id = bookIds.get(2);
 
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_details.fxml"));
 
@@ -308,7 +297,7 @@ public class UserDashboardController {
 
     @FXML
     void imgB4inAction(MouseEvent event) throws IOException {
-        id = "B4";
+        id = bookIds.get(3);
 
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/book_details.fxml"));
 
@@ -320,11 +309,6 @@ public class UserDashboardController {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.centerOnScreen();
         stage.show();
-    }
-
-    @FXML
-    void popularRectOnAction(MouseEvent event) {
-
     }
 
     @FXML
@@ -365,6 +349,28 @@ public class UserDashboardController {
     @FXML
     void moreBookOnAction(MouseEvent event) throws IOException {
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/moreBooks.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Book");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+    }
+
+    public void setBooks() {
+
+        List<BookDto> dtoList = bookBO.getRecentlyAddedBooks(4);
+
+        for (BookDto dto : dtoList) {
+            bookIds.add(dto.getId());
+        }
+    }
+
+    @FXML
+    void myRectOnAction(MouseEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/myBooks.fxml"));
 
         Scene scene = new Scene(rootNode);
         Stage stage = new Stage();

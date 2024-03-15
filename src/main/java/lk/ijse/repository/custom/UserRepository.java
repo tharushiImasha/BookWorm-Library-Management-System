@@ -15,4 +15,6 @@ public interface UserRepository extends CrudRepository<User> {
     List<User> getUsersAdmin ();
 
     String getUserName(String name);
+
+    int getReaderCount();
 }

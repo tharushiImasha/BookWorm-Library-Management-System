@@ -221,4 +221,21 @@ public class UserBOImpl implements UserBO {
             return null;
         }
     }
+
+    @Override
+    public int getReaderCount() {
+        session = SessionFactoryConfig.getInstance().getSession();
+        try {
+            userRepository.setSession(session);
+            int readerCount = userRepository.getReaderCount();
+
+            session.close();
+            return readerCount;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

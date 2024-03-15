@@ -25,7 +25,13 @@ public interface BorrowedBookBO extends SuperBO {
 
     List<BorrowedDetailsDto> getOverdueBorrowedDetails();
 
+    List<BorrowedDetailsDto> getBorrowedDetailsNotReturned();
+
     List<Object[]> getUserAndBookTitle();
 
     boolean checkNumberOfBooks(String userName);
+
+    int getBorrowedCount();
+
+    int getOverDueCount();
 }

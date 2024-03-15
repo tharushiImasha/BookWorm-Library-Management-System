@@ -1,6 +1,5 @@
 package lk.ijse.repository.custom.impl;
 
-import lk.ijse.dto.BorrowedDetailsDto;
 import lk.ijse.embedded.BorrowedDetailPK;
 import lk.ijse.entity.BorrowedDetails;
 import lk.ijse.repository.custom.BorrowedBookRepository;
@@ -31,7 +30,7 @@ public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
     @Override
     public boolean save(BorrowedDetails entity) {
         BorrowedDetailPK borrowedDetailPK = (BorrowedDetailPK) session.save(entity);
-        System.out.println(entity.getDueDate()+ " and " +entity.getReturnDate());
+
         if (borrowedDetailPK != null){
             return true;
         }
@@ -75,10 +74,10 @@ public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
     }
 
     @Override
-    public List<BorrowedDetailsDto> getAllBorrowedFromUser(String userName) {
+    public List<BorrowedDetails> getAllBorrowedFromUser(String userName) {
 
-        Query<BorrowedDetails> query = session.createQuery("SELECT bd FROM BorrowedDetails bd " + "WHERE bd.user.username = :username", BorrowedDetails.class);
-        query.setParameter("username", userName);
+        Query<BorrowedDetails> query = session.createQuery("SELECT bd FROM BorrowedDetails bd WHERE bd.user.userName = :userName", BorrowedDetails.class);
+        query.setParameter("userName", userName);
 
         List list = query.list();
 
@@ -111,8 +110,6 @@ public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
                 .setParameter("bookId", bookId)
                 .getSingleResult();
 
-        System.out.println("why null "+userName);
-
         session.close();
 
         return userName;
@@ -142,15 +139,61 @@ public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
     }
 
     @Override
+    public int getBorrowedCount() {
+        try {
+            String sql = "SELECT COUNT(*) \n" +
+                    "FROM borrowed_detail\n" +
+                    "WHERE return_date IS NULL";
+            Query query = session.createNativeQuery(sql);
+            int count = ((Number) query.getSingleResult()).intValue();
+
+            return count;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
+    public int getOverDueCount() {
+        Date currentDate = new Date();
+
+        try {
+            String sql = "SELECT COUNT(*) \n" +
+                    "FROM borrowed_detail\n" +
+                    "WHERE return_date IS NULL AND due_date < :currentDate";
+            Query query = session.createNativeQuery(sql);
+            query.setParameter("currentDate", currentDate);
+
+            int count = ((Number) query.getSingleResult()).intValue();
+
+            return count;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
     public List<BorrowedDetails> getOverdueBorrowedDetails() {
         Date currentDate = new Date();
 
         String hql = "SELECT bd FROM BorrowedDetails bd " +
-                "JOIN bd.book " +
                 "WHERE bd.returnDate IS NULL AND bd.dueDate < :currentDate";
 
         Query<BorrowedDetails> query = session.createQuery(hql, BorrowedDetails.class);
         query.setParameter("currentDate", currentDate);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<BorrowedDetails> getBorrowedDetailsNotReturned() {
+        String hql = "SELECT bd FROM BorrowedDetails bd " +
+                "WHERE bd.returnDate IS NULL";
+
+        Query<BorrowedDetails> query = session.createQuery(hql, BorrowedDetails.class);
         return query.getResultList();
     }
 

@@ -41,12 +41,12 @@
          </image>
       </ImageView>
       <ImageView fx:id="imgBook" fitHeight="288.0" fitWidth="207.0" layoutX="44.0" layoutY="44.0" pickOnBounds="true" />
-      <JFXButton layoutX="44.0" layoutY="381.0" onAction="#btnBackOnAction" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Back" textFill="WHITE">
+      <JFXButton layoutX="44.0" layoutY="388.0" onAction="#btnBackOnAction" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Back" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="196.0" layoutY="381.0" onAction="#btnBorrowOnAction" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #002B5B; -fx-background-radius: 10;" text="Borrow" textFill="WHITE">
+      <JFXButton layoutX="196.0" layoutY="388.0" onAction="#btnBorrowOnAction" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #002B5B; -fx-background-radius: 10;" text="Borrow" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -56,5 +56,10 @@
             <Image url="@../images/bookOageImg.png" />
          </image>
       </ImageView>
+      <Label fx:id="lblGenre" layoutX="44.0" layoutY="342.0" text="Horror">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -65,7 +65,7 @@ public class BorrowedBookTableController {
         System.out.println(userName);
 
         try {
-            List<BorrowedDetailsDto> dtoList = borrowedBookBO.getAllBorrowedFromUser(userName);
+            List<BorrowedDetailsDto> dtoList = borrowedBookBO.getBorrowedDetailsNotReturned();
 
             ObservableList<BorrowedDetailsTm> obList = FXCollections.observableArrayList();
 
@@ -99,7 +99,9 @@ public class BorrowedBookTableController {
 
                 userName = borrowedBookBO.getUserNameFromBorrowed(dto.getBorrowedDetailPK().getId());
 
-                var tm = new BorrowedDetailsTm(dto.getBorrowedDetailPK(), dto.getBorrowedDate(), dto.getDueDate(), title, userName, btn);
+                String name = userBO.getName(userName);
+
+                var tm = new BorrowedDetailsTm(dto.getBorrowedDetailPK(), dto.getBorrowedDate(), dto.getDueDate(), title, name, btn);
 
                 System.out.println(tm);
 

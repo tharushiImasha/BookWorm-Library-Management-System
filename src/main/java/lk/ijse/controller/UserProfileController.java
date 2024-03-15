@@ -90,6 +90,7 @@ public class UserProfileController {
     }
 
     private void loadAllBooks() {
+
         try {
             List<BorrowedDetailsDto> dtoList = borrowedBookBO.getAllBorrowedFromUser(userName);
 

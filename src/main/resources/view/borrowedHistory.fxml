@@ -6,20 +6,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="480.0" prefWidth="1000.0" style="-fx-background-color: #002B5B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BorrowedBookTableController">
+<AnchorPane prefHeight="480.0" prefWidth="1000.0" style="-fx-background-color: #002B5B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BorrowedHistoryController">
    <children>
       <Label layoutX="56.0" layoutY="39.0" text="Borrowed Books" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <TableView fx:id="tblBorrowedBooks" layoutX="56.0" layoutY="100.0" prefHeight="321.0" prefWidth="889.0" stylesheets="@../stylesheet/table.css">
+      <TableView fx:id="tblBorrowedBooks" layoutX="56.0" layoutY="100.0" prefHeight="321.0" prefWidth="889.0">
         <columns>
           <TableColumn fx:id="colTitle" prefWidth="162.0" text="Title" />
           <TableColumn fx:id="colName" minWidth="0.0" prefWidth="169.0" text=" Name" />
             <TableColumn fx:id="colBorrowingDate" minWidth="0.0" prefWidth="215.0" text="Borrowing Date" />
             <TableColumn fx:id="colDueDate" minWidth="0.0" prefWidth="202.0" text="Due Date" />
-            <TableColumn fx:id="colAction" minWidth="0.0" prefWidth="140.0" text="Return" />
+            <TableColumn fx:id="colReturn" minWidth="0.0" prefWidth="140.0" text="Return Status" />
         </columns>
       </TableView>
    </children>

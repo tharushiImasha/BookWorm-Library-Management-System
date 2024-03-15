@@ -2,9 +2,6 @@ package lk.ijse.entity;
 
 import jakarta.persistence.*;
 import lk.ijse.dto.UserDto;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -26,4 +26,6 @@ public interface UserBO extends SuperBO {
     List<UserDto> getUsersAdmin();
 
     String getUserName(String name);
+
+    int getReaderCount();
 }

@@ -17,6 +17,8 @@ public interface BookRepository extends CrudRepository<Book> {
 
     String getStatus(String id);
 
+    String getGenre(String id);
+
     String getId(String title);
 
     List<Book> getBooksFromType(String type);

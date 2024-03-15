@@ -8,7 +8,7 @@ import lk.ijse.repository.CrudRepository;
 import java.util.List;
 
 public interface BorrowedBookRepository extends CrudRepository<BorrowedDetails> {
-    List<BorrowedDetailsDto> getAllBorrowedFromUser(String userName);
+    List<BorrowedDetails> getAllBorrowedFromUser(String userName);
 
     BorrowedDetails searchBorrowedDetails(String id, String userName);
 
@@ -16,7 +16,13 @@ public interface BorrowedBookRepository extends CrudRepository<BorrowedDetails> 
 
     boolean checkReturnDate(String bookId);
 
+    int getOverDueCount();
+
     List<BorrowedDetails> getOverdueBorrowedDetails();
 
+    List<BorrowedDetails> getBorrowedDetailsNotReturned();
+
     List<Object[]> getUserAndBookTitle();
+
+    int getBorrowedCount();
 }

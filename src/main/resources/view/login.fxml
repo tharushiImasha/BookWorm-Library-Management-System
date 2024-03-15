@@ -59,6 +59,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <PasswordField fx:id="txtHidePw" layoutX="199.0" layoutY="477.0" prefHeight="33.0" prefWidth="308.0" promptText="Password" style="-fx-border-color: #002B5B; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      <PasswordField fx:id="txtHidePw" layoutX="199.0" layoutY="477.0" onAction="#pwOnAction" prefHeight="33.0" prefWidth="308.0" promptText="Password" style="-fx-border-color: #002B5B; -fx-border-radius: 5; -fx-background-radius: 5;" />
    </children>
 </AnchorPane>

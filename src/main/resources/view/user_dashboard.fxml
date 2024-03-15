@@ -33,37 +33,37 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <Circle fx:id="profile" fill="DODGERBLUE" layoutX="1223.0" layoutY="50.0" onMouseClicked="#ProfileOnAction" opacity="0.0" radius="36.0" stroke="BLACK" strokeType="INSIDE">
+      <Circle fill="DODGERBLUE" layoutX="1223.0" layoutY="50.0" onMouseClicked="#ProfileOnAction" opacity="0.0" radius="36.0" stroke="BLACK" strokeType="INSIDE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Circle>
-      <Rectangle fx:id="recentRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="102.0" layoutX="138.0" layoutY="616.0" onMouseClicked="#recentRectOnAction" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="495.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="102.0" layoutX="138.0" layoutY="616.0" onMouseClicked="#recentRectOnAction" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="495.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="popularRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="102.0" layoutX="677.0" layoutY="616.0" onMouseClicked="#popularRectOnAction" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="495.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="102.0" layoutX="677.0" layoutY="616.0" onMouseClicked="#myRectOnAction" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="495.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="horrorRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="102.0" layoutX="131.0" layoutY="759.0" onMouseClicked="#horrorRectOnAction" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="239.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="102.0" layoutX="131.0" layoutY="759.0" onMouseClicked="#horrorRectOnAction" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="239.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="fantacyRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="102.0" layoutX="401.0" layoutY="759.0" onMouseClicked="#fantacyRectOnAction" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="239.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="102.0" layoutX="401.0" layoutY="759.0" onMouseClicked="#fantacyRectOnAction" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="239.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="childrenRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="102.0" layoutX="670.0" layoutY="759.0" onMouseClicked="#childrenRectOnAction" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="239.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="102.0" layoutX="670.0" layoutY="759.0" onMouseClicked="#childrenRectOnAction" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="239.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="fictionRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="102.0" layoutX="940.0" layoutY="759.0" onMouseClicked="#fictionRectOnAction" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="239.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="102.0" layoutX="940.0" layoutY="759.0" onMouseClicked="#fictionRectOnAction" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="239.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -132,10 +132,22 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <ImageView fx:id="imgB1" fitHeight="268.0" fitWidth="200.0" layoutX="187.0" layoutY="222.0" onMouseClicked="#imgB1inAction" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="imgB2" fitHeight="268.0" fitWidth="200.0" layoutX="436.0" layoutY="222.0" onMouseClicked="#imgB2inAction" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="imgB3" fitHeight="268.0" fitWidth="200.0" layoutX="684.0" layoutY="222.0" onMouseClicked="#imgB3inAction" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="imgB4" fitHeight="268.0" fitWidth="200.0" layoutX="932.0" layoutY="222.0" onMouseClicked="#imgB4inAction" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgB1" fitHeight="268.0" fitWidth="200.0" layoutX="187.0" layoutY="222.0" onMouseClicked="#imgB1inAction" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
+      <ImageView fx:id="imgB2" fitHeight="268.0" fitWidth="200.0" layoutX="436.0" layoutY="222.0" onMouseClicked="#imgB2inAction" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
+      <ImageView fx:id="imgB3" fitHeight="268.0" fitWidth="200.0" layoutX="684.0" layoutY="222.0" onMouseClicked="#imgB3inAction" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
+      <ImageView fx:id="imgB4" fitHeight="268.0" fitWidth="200.0" layoutX="932.0" layoutY="222.0" onMouseClicked="#imgB4inAction" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ImageView>
       <ImageView fitHeight="38.0" fitWidth="35.0" layoutX="638.0" layoutY="563.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icon/more.png" />

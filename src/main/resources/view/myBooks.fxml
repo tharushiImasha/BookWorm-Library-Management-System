@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="466.0" prefWidth="959.0" style="-fx-background-color: #002B5B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.MyBooksController">
+   <children>
+      <Label layoutX="48.0" layoutY="41.0" text="Borrowed Books" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblBorrowedDetails" layoutX="48.0" layoutY="104.0" prefHeight="314.0" prefWidth="858.0">
+         <columns>
+            <TableColumn fx:id="colTitle" prefWidth="222.0" text="Book Title" />
+            <TableColumn fx:id="colBorrowedDate" prefWidth="241.0" text="Borrowed Date" />
+            <TableColumn fx:id="colDueDate" prefWidth="239.0" text="Due Date" />
+            <TableColumn fx:id="colReturn" prefWidth="155.0" text="Return Status" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

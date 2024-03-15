@@ -60,7 +60,9 @@ public class RecentBooksController {
             ObservableList<BookTm> obList = FXCollections.observableArrayList();
 
             for(BookDto dto : dtoList){
-                var tm = new BookTm(dto.getId(), dto.getTitle(), dto.getAuthor(), dto.getDesc(), dto.getGenre(), dto.getBranchId(), dto.getStatus(), dto.getImage());
+                String status = bookBO.getStatus(dto.getId());
+
+                var tm = new BookTm(dto.getId(), dto.getTitle(), dto.getAuthor(), dto.getDesc(), dto.getGenre(), dto.getBranchId(), status, dto.getImage());
 
                 obList.add(tm);
             }

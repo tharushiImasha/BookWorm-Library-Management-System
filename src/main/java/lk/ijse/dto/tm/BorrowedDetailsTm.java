@@ -43,4 +43,13 @@ public class BorrowedDetailsTm {
         this.name = name;
         this.btn = btn;
     }
+
+    public BorrowedDetailsTm(BorrowedDetailPK borrowedDetailPK, Timestamp borrowedDate, Timestamp dueDate, String title, String returned, String name) {
+        this.borrowedDetailPK = borrowedDetailPK;
+        this.borrowedDate = borrowedDate;
+        this.dueDate = dueDate;
+        this.title = title;
+        this.returned = returned;
+        this.name = name;
+    }
 }

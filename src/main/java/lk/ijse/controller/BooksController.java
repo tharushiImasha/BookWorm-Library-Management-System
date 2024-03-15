@@ -387,12 +387,24 @@ public class BooksController {
         Scene scene = new Scene(rootNode);
         Stage stage = new Stage();
 
-        stage.setTitle("Book");
+        stage.setTitle("OverDue Book");
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
     }
 
+    @FXML
+    void borrowHistoryOnAction(ActionEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/borrowedHistory.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+
+        stage.setTitle("Borrowed History");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+    }
 
     @FXML
     void imgOnAction(MouseEvent event) {

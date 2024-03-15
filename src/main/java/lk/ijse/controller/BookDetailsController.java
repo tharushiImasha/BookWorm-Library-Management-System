@@ -36,6 +36,9 @@ public class BookDetailsController {
     private Label lblAuthor;
 
     @FXML
+    private Label lblGenre;
+
+    @FXML
     private Label lblDesc;
 
     @FXML
@@ -57,6 +60,7 @@ public class BookDetailsController {
         setTitle();
         setAuthor();
         setDesc();
+        setGenre();
 
         if (bookBO.getStatus(id).equals("Available")){
             notAvailble.setVisible(false);
@@ -66,6 +70,10 @@ public class BookDetailsController {
             available.setVisible(false);
         }
 
+    }
+
+    private void setGenre() {
+        lblGenre.setText("("+bookBO.getGenre(id)+")");
     }
 
     private void setDesc() {

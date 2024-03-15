@@ -229,6 +229,25 @@ public class BookBOImpl implements BookBO {
     }
 
     @Override
+    public String getGenre(String id) {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            bookRepository.setSession(session);
+            String author = bookRepository.getGenre(id);
+
+            session.close();
+
+            return author;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
     public String getStatus(String id) {
         session = SessionFactoryConfig.getInstance().getSession();
 

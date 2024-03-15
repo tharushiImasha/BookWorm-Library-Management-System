@@ -98,10 +98,10 @@ public class BorrowedBookBOImpl implements BorrowedBookBO {
 
         try {
             borrowedBookRepository.setSession(session);
-            List<BorrowedDetails> all = borrowedBookRepository.getAll();
+            List<BorrowedDetails> allBorrowedFromUser = borrowedBookRepository.getAllBorrowedFromUser(userName);
             List<BorrowedDetailsDto> borrowedDetailsDtos = new ArrayList<>();
 
-            for (BorrowedDetails borrowedDetails : all){
+            for (BorrowedDetails borrowedDetails : allBorrowedFromUser){
                 borrowedDetailsDtos.add(borrowedDetails.toDto());
             }
 
@@ -141,8 +141,6 @@ public class BorrowedBookBOImpl implements BorrowedBookBO {
             borrowedBookRepository.setSession(session);
             String userNameFromBorrowed = borrowedBookRepository.getUserNameFromBorrowed(bookId);
 
-            System.out.println("why null "+userNameFromBorrowed);
-
             session.close();
             return userNameFromBorrowed;
 
@@ -178,6 +176,29 @@ public class BorrowedBookBOImpl implements BorrowedBookBO {
         try {
             borrowedBookRepository.setSession(session);
             List<BorrowedDetails> all = borrowedBookRepository.getOverdueBorrowedDetails();
+            List<BorrowedDetailsDto> borrowedDetailsDtos = new ArrayList<>();
+
+            for (BorrowedDetails borrowedDetails : all){
+                borrowedDetailsDtos.add(borrowedDetails.toDto());
+            }
+
+            session.close();
+            return borrowedDetailsDtos;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public List<BorrowedDetailsDto> getBorrowedDetailsNotReturned() {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            borrowedBookRepository.setSession(session);
+            List<BorrowedDetails> all = borrowedBookRepository.getBorrowedDetailsNotReturned();
             List<BorrowedDetailsDto> borrowedDetailsDtos = new ArrayList<>();
 
             for (BorrowedDetails borrowedDetails : all){
@@ -235,6 +256,42 @@ public class BorrowedBookBOImpl implements BorrowedBookBO {
         }
         session.close();
         return true;
+    }
+
+    @Override
+    public int getBorrowedCount() {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            borrowedBookRepository.setSession(session);
+            int borrowedCount = borrowedBookRepository.getBorrowedCount();
+
+            session.close();
+            return borrowedCount;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    @Override
+    public int getOverDueCount() {
+        session = SessionFactoryConfig.getInstance().getSession();
+
+        try {
+            borrowedBookRepository.setSession(session);
+            int borrowedCount = borrowedBookRepository.getOverDueCount();
+
+            session.close();
+            return borrowedCount;
+
+        } catch (Exception e) {
+            session.close();
+            e.printStackTrace();
+            throw e;
+        }
     }
 
 }

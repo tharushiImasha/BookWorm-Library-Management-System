@@ -137,6 +137,21 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public int getReaderCount() {
+        try {
+            String sql = "SELECT COUNT(user_name) FROM user WHERE user_role = 'Reader'";
+            Query query = session.createNativeQuery(sql);
+            int count = ((Number) query.getSingleResult()).intValue();
+
+            return count;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
     public boolean save(User entity) {
         try {
             session.save(entity);

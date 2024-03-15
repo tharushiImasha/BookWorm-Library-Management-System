@@ -108,4 +108,9 @@ public class LoginController {
         }
     }
 
+    @FXML
+    void pwOnAction(ActionEvent event) throws IOException {
+        btnLoginOnAction(event);
+    }
+
 }

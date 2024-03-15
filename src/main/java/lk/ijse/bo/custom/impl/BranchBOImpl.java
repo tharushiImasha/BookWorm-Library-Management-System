@@ -104,8 +104,6 @@ public class BranchBOImpl implements BranchBO {
     public Branch searchBranch(String id) {
         session = SessionFactoryConfig.getInstance().getSession();
 
-        System.out.println("id "+id);
-
         try {
             branchRepository.setSession(session);
             Branch search = branchRepository.search(id);

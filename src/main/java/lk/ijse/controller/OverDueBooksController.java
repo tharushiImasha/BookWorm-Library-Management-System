@@ -86,6 +86,8 @@ public class OverDueBooksController {
 
                         String bookId = bookBO.getId(title);
 
+                        userName = borrowedBookBO.getUserNameFromBorrowed(dto.getBorrowedDetailPK().getId());
+
                         returnBook(bookId);
 
                         obList.remove(index);

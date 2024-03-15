@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="554.0" prefWidth="979.0" style="-fx-background-color: #002B5B;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BookFromGenreController">
    <children>
       <Label layoutX="65.0" layoutY="43.0" text="Books From Genre" textFill="WHITE">
@@ -14,7 +13,7 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <TableView fx:id="tblAllBooks" layoutX="68.0" layoutY="113.0" prefHeight="398.0" prefWidth="864.0">
+      <TableView fx:id="tblAllBooks" layoutX="68.0" layoutY="113.0" prefHeight="398.0" prefWidth="864.0" stylesheets="@../stylesheet/table.css">
          <columns>
             <TableColumn fx:id="colBookId" prefWidth="95.0" text="Book ID" />
             <TableColumn fx:id="colTitle" prefWidth="235.0" text="Title" />

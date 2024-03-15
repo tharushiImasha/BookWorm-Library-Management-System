@@ -37,7 +37,6 @@ public class BookBOImpl implements BookBO {
         branchRepository.setSession(session);
         Branch b1 = branchRepository.search(bookDto.getBranchId());
 
-        System.out.println("bbb "+b1);
 
         try {
             bookRepository.setSession(session);
@@ -138,7 +137,6 @@ public class BookBOImpl implements BookBO {
 
             for (Book book : all){
                bookDtoList.add(new BookDto(book.getId(), book.getTitle(), book.getAuthor(), book.getDesc(), book.getGenre(), book.getBranch().getId(), book.getStatus()));
-               System.out.println(book.getBranch());
             }
 
 

@@ -33,8 +33,6 @@ public class BorrowedBookBOImpl implements BorrowedBookBO {
         try {
             borrowedBookRepository.setSession(session);
 
-            System.out.println("ooo "+dto.getBorrowedDetailPK());
-
             boolean save = borrowedBookRepository.save(new BorrowedDetails(dto.getBorrowedDetailPK(), dto.getBorrowedDate(), dto.getDueDate(), dto.getReturnDate()));
 
             transaction.commit();

@@ -294,6 +294,7 @@ public class UsersController {
 
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "User saved!").show();
+                    initialize();
                 } else {
                     new Alert(Alert.AlertType.CONFIRMATION, "User not saved!").show();
                 }
@@ -326,6 +327,7 @@ public class UsersController {
 
             if (isUpdate){
                 new Alert(Alert.AlertType.CONFIRMATION, "User Updated!").show();
+                initialize();
             } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "User not Updated!").show();
             }

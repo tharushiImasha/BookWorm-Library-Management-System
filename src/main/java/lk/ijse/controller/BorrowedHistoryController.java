@@ -56,8 +56,6 @@ public class BorrowedHistoryController {
     }
 
     private void loadAllBooks() {
-        System.out.println(userName);
-
         try {
             List<BorrowedDetailsDto> dtoList = borrowedBookBO.getAllBorrowed();
 
@@ -77,8 +75,6 @@ public class BorrowedHistoryController {
                 String name = userBO.getName(userName);
 
                 var tm = new BorrowedDetailsTm(dto.getBorrowedDetailPK(), dto.getBorrowedDate(), dto.getDueDate(), title, returned, name);
-
-                System.out.println(tm);
 
                 obList.add(tm);
 

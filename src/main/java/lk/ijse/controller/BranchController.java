@@ -79,8 +79,6 @@ public class BranchController {
         colLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
-
-        System.out.println(new PropertyValueFactory<>("userName"));
     }
 
     private void loadAllBranches() {
@@ -114,11 +112,7 @@ public class BranchController {
 
                 var tm = new BranchTm(dto.getId(), dto.getLocation(), dto.getUserName(),  btn);
 
-                System.out.println(dto.getUserName());
-
                 obList.add(tm);
-
-                System.out.println(tm);
 
             }
 
@@ -178,19 +172,6 @@ public class BranchController {
     }
 
     private boolean validateBranches() {
-        String id = txtId.getText();
-        boolean isValid = Pattern.matches("[Br][0-9]{1,}", id);
-
-        if (!isValid){
-
-            if (txtId.getText().isEmpty()){
-                flashBorder(txtId);
-                return false;
-            }else {
-                new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
-                return false;
-            }
-        }
 
         String location = txtLocation.getText();
         boolean isValidName = Pattern.matches("([a-zA-Z\\s]+)", location);
@@ -243,6 +224,8 @@ public class BranchController {
 
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Branch saved!").show();
+                    tblBranches.refresh();
+                    initialize();
                 } else {
                     new Alert(Alert.AlertType.CONFIRMATION, "Branch not saved!").show();
                 }
@@ -267,6 +250,7 @@ public class BranchController {
 
             if (isSaved){
                 new Alert(Alert.AlertType.CONFIRMATION, "Branch updated!").show();
+                initialize();
             } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "Branch not updated!").show();
             }

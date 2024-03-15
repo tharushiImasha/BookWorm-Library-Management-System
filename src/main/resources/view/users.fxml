@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -46,8 +47,11 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
-      <TableView fx:id="tblUsers" layoutX="44.0" layoutY="384.0" prefHeight="295.0" prefWidth="999.0">
+      <TableView fx:id="tblUsers" layoutX="44.0" layoutY="384.0" prefHeight="295.0" prefWidth="999.0" stylesheets="@../stylesheet/table.css">
         <columns>
           <TableColumn fx:id="colName" prefWidth="241.0" text="Name" />
           <TableColumn fx:id="colEmail" prefWidth="227.0" text="Email" />

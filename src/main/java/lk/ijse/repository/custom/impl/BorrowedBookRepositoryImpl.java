@@ -44,6 +44,7 @@ public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
             return true;
 
         }catch (Exception e) {
+            System.out.println(e);
             e.printStackTrace();
             return false;
         }
@@ -66,8 +67,6 @@ public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
 
         List list = query.list();
 
-        System.out.println("list  "+list);
-
         session.close();
 
         return list;
@@ -80,8 +79,6 @@ public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
         query.setParameter("userName", userName);
 
         List list = query.list();
-
-        System.out.println(list);
 
         session.close();
 
@@ -98,6 +95,7 @@ public class BorrowedBookRepositoryImpl implements BorrowedBookRepository {
             return borrowedDetails;
 
         }catch (Exception e) {
+            System.out.println(e);
             e.printStackTrace();
             throw e;
         }

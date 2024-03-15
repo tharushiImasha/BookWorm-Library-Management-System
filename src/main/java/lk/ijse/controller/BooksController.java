@@ -328,6 +328,7 @@ public class BooksController {
 
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Book saved!").show();
+                    initialize();
                 } else {
                     new Alert(Alert.AlertType.CONFIRMATION, "Book not saved!").show();
                 }
@@ -358,6 +359,7 @@ public class BooksController {
 
             if (isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION, "Book updated!").show();
+                initialize();
             } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "Book not updated!").show();
             }

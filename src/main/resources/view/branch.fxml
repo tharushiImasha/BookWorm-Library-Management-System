@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -35,18 +36,27 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <JFXButton layoutX="462.0" layoutY="288.0" onAction="#btnUpdateOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Update">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
       <JFXButton layoutX="696.0" layoutY="288.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="123.0" style="-fx-background-color: #76AFEF;" text="Clear">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
-      <TableView fx:id="tblBranches" layoutX="44.0" layoutY="355.0" prefHeight="324.0" prefWidth="999.0">
+      <TableView fx:id="tblBranches" layoutX="44.0" layoutY="355.0" prefHeight="324.0" prefWidth="999.0" stylesheets="@../stylesheet/table.css">
         <columns>
           <TableColumn fx:id="colId" prefWidth="241.0" text="Branch ID" />
           <TableColumn fx:id="colLocation" prefWidth="312.0" text="Loaction" />

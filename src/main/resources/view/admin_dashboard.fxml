@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -84,7 +85,13 @@
       <ImageView fx:id="imgB2" fitHeight="304.0" fitWidth="217.0" layoutX="318.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="imgB3" fitHeight="304.0" fitWidth="217.0" layoutX="560.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="imgB4" fitHeight="304.0" fitWidth="217.0" layoutX="802.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="149.0" layoutX="410.0" layoutY="70.0" onMouseClicked="#borrowedOnAction" stroke="TRANSPARENT" strokeType="INSIDE" width="268.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="149.0" layoutX="742.0" layoutY="70.0" onMouseClicked="#overDueOnAction" stroke="TRANSPARENT" strokeType="INSIDE" width="268.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="149.0" layoutX="410.0" layoutY="70.0" onMouseClicked="#borrowedOnAction" stroke="TRANSPARENT" strokeType="INSIDE" width="268.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="149.0" layoutX="742.0" layoutY="70.0" onMouseClicked="#overDueOnAction" stroke="TRANSPARENT" strokeType="INSIDE" width="268.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
     </children>
 </AnchorPane>

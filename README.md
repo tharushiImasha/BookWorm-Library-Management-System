@@ -15,9 +15,15 @@ BookWorm is a Java-based library management system designed to efficiently organ
 - **MySQL**: The relational database used to store library resources and user data. 
 
 ## Screenshots
-![Screenshot 1](path/to/screenshot1.png)
-![Screenshot 2](path/to/screenshot2.png)
-![Screenshot 3](path/to/screenshot3.png)
+![Image](https://github.com/user-attachments/assets/ed2e0be2-0033-4997-ad2a-c374cee088be)
+
+![Image](https://github.com/user-attachments/assets/6e66537d-f879-4da3-9f35-435ed724706f)
+
+![Image](https://github.com/user-attachments/assets/d2abf6ca-7bc8-451f-b0f8-1bdf0dfbad47)
+
+![Image](https://github.com/user-attachments/assets/febf77a3-8aa1-4be2-b05e-71555368874a)
+
+![Image](https://github.com/user-attachments/assets/f8ccd665-211e-4e30-b031-344ba5bd2bb7)
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
